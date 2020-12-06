@@ -137,7 +137,8 @@
 
 (define (process-poetry-content elems)
   (define stanzas (decode-paragraphs elems 'p
-                                     #:linebreak-proc values)) ; using values so that nothing is done here (values will return its arguments unchanged)
+                                     #:linebreak-proc values ; using values so that nothing is done here (values will return its arguments unchanged)
+                                     #:force? #t))
   (process-stanzas stanzas))
 
 
