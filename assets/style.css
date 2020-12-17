@@ -1,0 +1,291 @@
+@import "normalize.css";
+
+:root {
+    --color-text: #000;
+    --color-text-accent: #cd2653;
+    --color-text-accent: rgb(182, 47, 16);
+    --color-bg: #f5efe0;
+    --color-bg-2: #feecbb;
+    --color-bg-accent: #ddd;
+    --color-bg-header: #fff;
+
+    --root-font-size: 4.26667vw;
+    --global-line-height: 2.75;
+    
+    --bp: 768px;
+}
+
+    
+@media (min-width: 375px) {
+    :root {
+        --root-font-size: 100%;
+    }
+}
+
+@media (min-width: 960px) {
+    :root {
+        --root-font-size: 112.5%;
+    }
+}
+
+@media (min-width: 1440px) {
+    :root {
+        --root-font-size: 125%;
+    }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+    font-size: var(--root-font-size);
+}
+
+body {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    background-color: var(--color-bg);
+    background: var(--color-bg) radial-gradient(at center center, var(--color-bg), var(--color-bg-2)) repeat scroll 0% 0%;
+    padding-top: 3.25rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+a {
+    color: var(--color-text-accent);
+    text-decoration: none;
+}
+
+header[role="banner"] {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    border-bottom: 2px solid var(--color-bg-accent);
+    font-size: 1.0625rem;
+    line-height: 2;
+    background-color: var(--color-bg-header);
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+header[role="banner"] > * {
+    padding: 0.25em 0;
+}
+
+header[role="banner"] a {
+    color: inherit;
+}
+
+header[role="banner"] a:hover {
+    color: var(--color-text-accent);
+}
+
+.main-head {
+    margin: 0;
+    text-align: center;
+    font-size: inherit;
+}
+
+.menu-trigger,
+.search-trigger {
+    width: 2.5em;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-trigger svg,
+.search-trigger svg {
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.menu-trigger:hover,
+.search-trigger:hover {
+    color: var(--color-text-accent);
+}
+
+.menu-trigger {
+    border-left: 2px solid var(--color-bg-accent);
+}
+
+.search-trigger {
+    order: 1;
+    border-right: 2px solid var(--color-bg-accent);
+}
+
+@media (min-width: 960px) {
+    body {
+        padding-top: 0;
+        padding-right: 3.5625rem;
+    }
+    
+    header[role="banner"] {
+        bottom: 0;
+        left: auto;
+        border-bottom: 0;
+        border-left: 2px solid var(--color-bg-accent);
+        width: 2.5em;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    header[role="banner"] > * {
+        padding: 0.625em 0;
+    }
+    
+    .main-head {
+        writing-mode: tb-rl;
+        writing-mode: vertical-rl;
+        order: 2;
+        transform: rotate(180deg);
+        margin: auto 0;
+    }
+    
+    .menu-trigger,
+    .search-trigger {
+        border-width: 0 0 2px 0;
+        border-style: solid;
+        border-color: var(--color-bg-accent);
+    }
+}
+
+/*
+ * -----------------------
+ * Article
+ * -----------------------
+ */
+.content {
+    width: 90%;
+    max-width: 20rem;
+    margin: 2em auto;
+    line-height: var(--global-line-height);
+}
+
+.fn-ref {
+    position: absolute;
+    color: inherit;
+    top: -1.1em;
+    transform: translateX(132%);
+    unicode-bidi: bidi-override;
+}
+
+.footnotes {
+    font-size: 0.8em;
+}
+
+.footnotes ol {
+    padding: 0;
+    list-style: none;
+}
+
+@media(min-width: 40rem) {
+    .content {
+        max-width: 35rem;
+        
+    }
+}
+
+@media(min-width: 75rem) {
+    .content {
+        max-width: 42rem;
+    }
+}
+
+/*
+ * -----------------------
+ * Poetry
+ * -----------------------
+ */
+
+.poetry {
+    /* width: 90%; */
+    /* max-width: 20rem; */
+    /* margin: 2em auto; */
+    /* line-height: var(--global-line-height); */
+}
+
+.poetry dl {
+    margin: 0 0 calc(1em * var(--global-line-height)) 0;
+}
+
+.poetry dd {
+    text-align-last: justify;
+    position: relative;
+    margin: 0;
+}
+
+@media(min-width: 40rem) {
+    .poetry {
+        /* max-width: 35rem; */
+    }
+
+    .poetry dl {
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .poetry dd:nth-child(odd) {
+        grid-column: span 3;
+    }
+    
+    .poetry dd:nth-child(even) {
+        grid-row: 2;
+        grid-column: span 3 / 6;
+    }
+    
+    .poetry dl:last-of-type dd {
+        grid-column: 2 / 5;
+    }
+}
+
+@media(min-width: 75rem) {
+    .poetry {
+        /* max-width: 42rem; */
+    }
+
+    .poetry dl {
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: calc(1em * var(--global-line-height));
+    }
+    
+    .poetry dd:nth-child(odd) {
+        grid-column: span 2;
+    }
+    
+    .poetry dd:nth-child(even) {
+        grid-row: 1;
+        grid-column: span 2 / 5;
+    }
+    
+    .poetry dl:last-of-type dd {
+        grid-column: 2 / 4;
+    }
+    
+    .poetry dl:last-of-type dd:nth-child(even) {
+        grid-row: 2;
+    }
+}
+
+/* dl { */
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr; */
+    /* grid-column-gap: 4.4em; */
+    /* margin: 0; */
+/* } */
+
+/* dd { */
+    /* text-align-last: justify; */
+    /* position: relative; */
+    /* margin: 0; */
+/* } */
+
