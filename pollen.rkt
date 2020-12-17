@@ -12,7 +12,7 @@
 (module setup racket/base
   (provide (all-defined-out))
   (require pollen/setup)
-  (define block-tags (append default-block-tags '(شاعری dummy ق))))
+  (define block-tags (append default-block-tags '(شاعری dummy ق سرخی))))
 
 
 ; Helper functions
@@ -84,6 +84,9 @@
 (define (حم . name)
   (txexpr 'span '((class "fn-author")) (decode-elements name
                                           #:string-proc (lambda(x) (string-append "—" x)))))
+
+(define (سرخی . heading)
+  `(h2 ,@heading))
 
 ; This function will take the elements of a 'شاعری txexpr and splice the contents of
 ; its nested tags (if any). 'span tags and their contents (which will have come from a
