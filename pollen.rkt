@@ -8,11 +8,11 @@
 (provide (all-defined-out))
 
 
-; Define ◊شاعری and ◊weak as block tags
+; Define some of the custom tags as block
 (module setup racket/base
   (provide (all-defined-out))
   (require pollen/setup)
-  (define block-tags (append default-block-tags '(شاعری dummy ق سرخی))))
+  (define block-tags (append default-block-tags '(شاعری dummy ق سرخی دستخط))))
 
 
 ; Helper functions
@@ -58,7 +58,7 @@
 (define (ح name-in)
   (define name (format "~a" name-in))
   (set! fn-names (if (member name fn-names) fn-names (cons name fn-names)))
-  `(span (a ((href ,(string-append "#" (fn-id name)))
+  `(span ((class "fn-ref")) (a ((href ,(string-append "#" (fn-id name)))
             (id ,(fnref-id name)))
            ,(number->urdu-fn-string (length (member name fn-names))))))
 
@@ -87,6 +87,9 @@
 
 (define (سرخی . heading)
   `(h2 ,@heading))
+
+(define (دستخط . content)
+  (txexpr 'p '((class "signature")) content))
 
 ; This function will take the elements of a 'شاعری txexpr and splice the contents of
 ; its nested tags (if any). 'span tags and their contents (which will have come from a

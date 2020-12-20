@@ -262,6 +262,31 @@ header[role="banner"] a:hover {
     margin: calc(var(--global-line-height) * 1em) auto;
 }
 
+.content h2 {
+    margin: calc(var(--global-line-height) * 1em) 0;
+    text-align: center;
+}
+
+.content p {
+    margin: 0;
+}
+
+.content p + p {
+    text-indent: calc(var(--global-line-height) * 1em);
+}
+
+.content ol {
+    list-style-type: persian;
+    margin: calc(var(--global-line-height) * 1em) 0;
+    padding-right: calc(var(--global-line-height) * 1em);
+}
+
+.content .signature {
+    margin-top: calc(var(--global-line-height) * 1em);
+    text-indent: 0;
+    text-align: left;
+}
+
 .fn-ref {
     position: absolute;
     color: inherit;
@@ -282,6 +307,17 @@ header[role="banner"] a:hover {
 .footnotes li {
     padding-right: 2em;
     position: relative;
+}
+
+.fn-count {
+    unicode-bidi: bidi-override;
+    position: absolute;
+    left: calc(100% - 1.5em);
+}
+
+.fn-author {
+    color: var(--color-text-light);
+    margin-right: 0.25em;
 }
 
 /* @media(min-width: 40rem) { */
