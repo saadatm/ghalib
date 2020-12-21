@@ -203,11 +203,15 @@ header[role="banner"] a:hover {
 }
 
 .fn-ref {
+    position: relative;
+}
+
+.fn-ref a {
     position: absolute;
-    color: inherit;
-    top: -1.1em;
-    transform: translateX(132%);
     unicode-bidi: bidi-override;
+    top: -1.3em;
+    left: 0;
+    transform: translateX(50%);
 }
 
 .footnotes {
