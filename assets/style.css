@@ -165,6 +165,159 @@ header[role="banner"] a:hover {
     }
 }
 
+
+/*
+ * -----------------------
+ * Article
+ * -----------------------
+ */
+.content {
+    width: 90%;
+    max-width: 42rem;
+    margin: calc(var(--global-line-height) * 1em) auto auto;
+}
+
+.content h2 {
+    margin: calc(var(--global-line-height) * 1em) 0;
+    text-align: center;
+}
+
+.content p {
+    margin: 0;
+}
+
+.content p + p {
+    text-indent: calc(var(--global-line-height) * 1em);
+}
+
+.content ol {
+    list-style-type: persian;
+    margin: calc(var(--global-line-height) * 1em) 0;
+    padding-right: calc(var(--global-line-height) * 1em);
+}
+
+.content .signature {
+    margin-top: calc(var(--global-line-height) * 1em);
+    text-indent: 0;
+    text-align: left;
+}
+
+.fn-ref {
+    position: absolute;
+    color: inherit;
+    top: -1.1em;
+    transform: translateX(132%);
+    unicode-bidi: bidi-override;
+}
+
+.footnotes {
+    font-size: 0.8em;
+}
+
+.footnotes ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footnotes li {
+    padding-right: 2em;
+    position: relative;
+}
+
+.fn-count {
+    unicode-bidi: bidi-override;
+    position: absolute;
+    left: calc(100% - 1.5em);
+}
+
+.fn-author {
+    color: var(--color-text-light);
+    margin-right: 0.25em;
+}
+
+/* @media(min-width: 40rem) { */
+    /* .content { */
+        /* max-width: 35rem; */
+        
+    /* } */
+/* } */
+
+/* @media(min-width: 75rem) { */
+    /* .content { */
+        /* max-width: 42rem; */
+    /* } */
+/* } */
+
+
+/*
+ * -----------------------
+ * Poetry
+ * -----------------------
+ */
+
+.poetry {
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto calc(var(--global-line-height) * 1em);
+}
+
+.poetry dl {
+    margin: 0 0 calc(1em * var(--global-line-height)) 0;
+}
+
+.poetry dd {
+    text-align-last: justify;
+    position: relative;
+    margin: 0;
+}
+
+@media(min-width: 40rem) {
+    .poetry {
+        max-width: 33.5rem;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .poetry dl {
+        margin: 0;
+        display: contents;
+    }
+    
+    .poetry dd:nth-child(odd) {
+        grid-column: span 3;
+    }
+    
+    .poetry dd:nth-child(even) {
+        grid-column: span 3 / 6;
+    }
+    
+    .poetry dl:last-of-type dd {
+        grid-column: 2 / 5;
+    }
+}
+
+@media(min-width: 75rem) {
+    .poetry {
+        max-width: 42rem;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: calc(1em * var(--global-line-height));
+    }
+
+    .poetry dd:nth-child(odd) {
+        grid-column: span 2;
+    }
+    
+    .poetry dd:nth-child(even) {
+        grid-column: span 2 / 5;
+    }
+    
+    .poetry dl:last-of-type dd {
+        grid-column: 2 / 4;
+    }
+}
+
+
 /*
  * ----------------------------------
  * Previous and next page navigation
@@ -173,7 +326,7 @@ header[role="banner"] a:hover {
 .pages-nav {
     list-style: none;
     padding: 0;
-    margin: auto 0 0 0;
+    margin: calc(var(--global-line-height) * 1rem) 0 0 0;
     font-size: 0.875em;
     line-height: 3.035714;
 }
@@ -250,176 +403,3 @@ header[role="banner"] a:hover {
         border-right: 2px solid var(--color-text-accent-light);
     }
 }
-
-/*
- * -----------------------
- * Article
- * -----------------------
- */
-.content {
-    width: 90%;
-    max-width: 42rem;
-    margin: calc(var(--global-line-height) * 1em) auto;
-}
-
-.content h2 {
-    margin: calc(var(--global-line-height) * 1em) 0;
-    text-align: center;
-}
-
-.content p {
-    margin: 0;
-}
-
-.content p + p {
-    text-indent: calc(var(--global-line-height) * 1em);
-}
-
-.content ol {
-    list-style-type: persian;
-    margin: calc(var(--global-line-height) * 1em) 0;
-    padding-right: calc(var(--global-line-height) * 1em);
-}
-
-.content .signature {
-    margin-top: calc(var(--global-line-height) * 1em);
-    text-indent: 0;
-    text-align: left;
-}
-
-.fn-ref {
-    position: absolute;
-    color: inherit;
-    top: -1.1em;
-    transform: translateX(132%);
-    unicode-bidi: bidi-override;
-}
-
-.footnotes {
-    font-size: 0.8em;
-}
-
-.footnotes ol {
-    padding: 0;
-    list-style: none;
-}
-
-.footnotes li {
-    padding-right: 2em;
-    position: relative;
-}
-
-.fn-count {
-    unicode-bidi: bidi-override;
-    position: absolute;
-    left: calc(100% - 1.5em);
-}
-
-.fn-author {
-    color: var(--color-text-light);
-    margin-right: 0.25em;
-}
-
-/* @media(min-width: 40rem) { */
-    /* .content { */
-        /* max-width: 35rem; */
-        
-    /* } */
-/* } */
-
-/* @media(min-width: 75rem) { */
-    /* .content { */
-        /* max-width: 42rem; */
-    /* } */
-/* } */
-
-
-/*
- * -----------------------
- * Poetry
- * -----------------------
- */
-
-.poetry {
-    /* width: 90%; */
-    /* max-width: 20rem; */
-    /* margin: 2em auto; */
-    /* line-height: var(--global-line-height); */
-}
-
-.poetry dl {
-    margin: 0 0 calc(1em * var(--global-line-height)) 0;
-}
-
-.poetry dd {
-    text-align-last: justify;
-    position: relative;
-    margin: 0;
-}
-
-@media(min-width: 40rem) {
-    .poetry {
-        /* max-width: 35rem; */
-    }
-
-    .poetry dl {
-        margin: 0;
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-    }
-    
-    .poetry dd:nth-child(odd) {
-        grid-column: span 3;
-    }
-    
-    .poetry dd:nth-child(even) {
-        grid-row: 2;
-        grid-column: span 3 / 6;
-    }
-    
-    .poetry dl:last-of-type dd {
-        grid-column: 2 / 5;
-    }
-}
-
-@media(min-width: 75rem) {
-    .poetry {
-        /* max-width: 42rem; */
-    }
-
-    .poetry dl {
-        grid-template-columns: repeat(4, 1fr);
-        grid-column-gap: calc(1em * var(--global-line-height));
-    }
-    
-    .poetry dd:nth-child(odd) {
-        grid-column: span 2;
-    }
-    
-    .poetry dd:nth-child(even) {
-        grid-row: 1;
-        grid-column: span 2 / 5;
-    }
-    
-    .poetry dl:last-of-type dd {
-        grid-column: 2 / 4;
-    }
-    
-    .poetry dl:last-of-type dd:nth-child(even) {
-        grid-row: 2;
-    }
-}
-
-/* dl { */
-    /* display: grid; */
-    /* grid-template-columns: 1fr 1fr; */
-    /* grid-column-gap: 4.4em; */
-    /* margin: 0; */
-/* } */
-
-/* dd { */
-    /* text-align-last: justify; */
-    /* position: relative; */
-    /* margin: 0; */
-/* } */
-
