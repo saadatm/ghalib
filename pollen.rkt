@@ -17,9 +17,9 @@
 
 ; Helper functions
 ; To to be used in filter-split. Taken from: http://docs.racket-lang.org/pollen-tfl/_pollen_rkt_.html?q=pollen-tfl#%28elem._%28chunk._~3cdetect-list-items~3e~3a1%29%29
-(define (verse-break? elem)
-  (define verse-separator-pattern (regexp "\n"))
-  (and (string? elem) (regexp-match verse-separator-pattern elem)))
+(define (line-break? elem)
+  (define line-separator-pattern (regexp "\n"))
+  (and (string? elem) (regexp-match line-separator-pattern elem)))
 
 (define (is-qitah? tx)
   (equal? 'ق (get-tag tx)))
@@ -89,7 +89,7 @@
   `(h2 ,@heading))
 
 (define (دستخط . content)
-  (txexpr 'p '((class "signature")) content))
+  `(p ((class "signature")) ,@content))
 
 ; This function will take the elements of a 'شاعری txexpr and splice the contents of
 ; its nested tags (if any). 'span tags and their contents (which will have come from a
@@ -102,44 +102,44 @@
                           (splice-poetry (get-elements x)))
                       (list x)))))
 
-; This function finds out the longest verse in a poem and 
-; returns a class name based on the length of that longest verse
+; This function finds out the longest line in a poem and 
+; returns a class name based on the length of that longest line
 (define (get-bahr-class ptx)
   ; Get poetry content in a single string
   (define temp (splice-poetry ptx))
   (define poetry-text (apply string-append temp))
   
-  ; We now have the verses of the whole poem in a single string (separated by line breaks),
-  ; so we split the poem into its verses (by splitting on \n)
-  (define verses (string-split poetry-text (regexp "(\n)+")))
+  ; We now have the lines of the whole poem in a single string (separated by line breaks),
+  ; so we split the poem into its lines (by splitting on \n)
+  (define lines (string-split poetry-text (regexp "(\n)+")))
 
   ; Remove any double (or more) spaces left over by nested tags
-  (define verses-normalized (map (lambda(x)
-                               (string-normalize-spaces x)) verses))
+  (define lines-normalized (map (lambda(x)
+                               (string-normalize-spaces x)) lines))
 
-  ; Filter each verse so that it only contains alphabets, commas, quotes, question marks,
-  ; exclamation marks... and then find the longest verse
-  (define verses-filtered (map (lambda(x)
-                                 (string-replace x (regexp "[^آاأبپتٹثجچحخدڈذرڑزژسشصضطظعغفقکگلمنںوؤہۂۃھءئیےۓ،\"؟! ]") "")) verses-normalized))
-  (define longest-verse (first (sort verses-filtered (lambda(x y) (> (string-length x) (string-length y))))))
-  (define longest-verse-length (string-length longest-verse))
-  (format "~a" longest-verse-length)
+  ; Filter each line so that it only contains alphabets, commas, quotes, question marks,
+  ; exclamation marks... and then find the longest line
+  (define lines-filtered (map (lambda(x)
+                                 (string-replace x (regexp "[^آاأبپتٹثجچحخدڈذرڑزژسشصضطظعغفقکگلمنںوؤہۂۃھءئیےۓ،\"؟! ]") "")) lines-normalized))
+  (define longest-line (first (sort lines-filtered (lambda(x y) (> (string-length x) (string-length y))))))
+  (define longest-line-length (string-length longest-line))
+  (format "~a" longest-line-length)
 
   (cond
-    [(<= longest-verse-length 20) (format "sm ~a" longest-verse-length)]
-    [(<= 21 longest-verse-length 40) (format "md ~a" longest-verse-length)]
-    [(> longest-verse-length 40) (format "lg ~a" longest-verse-length)])
+    [(<= longest-line-length 20) (format "sm ~a" longest-line-length)]
+    [(<= 21 longest-line-length 40) (format "md ~a" longest-line-length)]
+    [(> longest-line-length 40) (format "lg ~a" longest-line-length)])
 )
 
 ; Custom ◊شاعری tag
 ; Excluding span because it will be containing the footnote reference, and
 ; will have come from the processing of ◊ح tag.
-; Excluding ◊ق because it will be processed later in split-into-verses
+; Excluding ◊ق because it will be processed later in split-into-lines
 (define (شاعری . content)
   (txexpr 'div `((class ,(string-append "poetry " (get-bahr-class content)))) (decode-elements content
                                           #:txexpr-elements-proc process-poetry-content
                                           #:exclude-tags '(span ق))))
-  
+
 
 (define (process-poetry-content elems)
   (define stanzas (decode-paragraphs elems 'p
@@ -149,24 +149,24 @@
 
 
 (define (process-stanzas lst)
-  ; Take each stanza in the list of stanzas and split & tag its verses
-  (map split-into-verses lst))
+  ; Take each stanza in the list of stanzas and split & tag its lines
+  (map split-into-lines lst))
 
 
-(define (split-into-verses tagged-stanza)
-  ; Get the elements (which are verses and newlines) of tagged-stanza (which is a txexpr) 
-  (define verses-content (get-elements tagged-stanza))
+(define (split-into-lines tagged-stanza)
+  ; Get the elements (which are lines and newlines) of tagged-stanza (which is a txexpr) 
+  (define lines-content (get-elements tagged-stanza))
   
-  ; Using "\n" as a separator, split the verses into multiple list items. Each list item will denote a verse.
-  (define verses-list (filter-split verses-content verse-break?))
+  ; Using "\n" as a separator, split the lines into multiple list items. Each list item will denote a line.
+  (define lines-list (filter-split lines-content line-break?))
   
-  ; Tag each verse/list item with dd
-  (define tagged-verses-list (map (lambda(x) (txexpr 'dd empty x)) verses-list))
+  ; Tag each line/list item with dd
+  (define tagged-lines-list (map (lambda(x) (txexpr 'dd empty x)) lines-list))
   
-  ; Finally, take the tagged verses and put them in a tagged dl (denoting a stanza)
+  ; Finally, take the tagged lines and put them in a tagged dl (denoting a stanza)
   (if (is-qitah? tagged-stanza)
-      (txexpr 'dl '((class "qitah")) tagged-verses-list)
-      (txexpr 'dl empty tagged-verses-list)))
+      (txexpr 'dl '((class "qitah")) tagged-lines-list)
+      (txexpr 'dl empty tagged-lines-list)))
 
 
 (define (root . elements)
