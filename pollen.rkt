@@ -55,13 +55,33 @@
 (define (fnref-id x) (string-append "ح-" x))
 
 (define fn-names null)
-(define (ح name-in)
-  (define name (format "~a" name-in))
-  (set! fn-names (if (member name fn-names) fn-names (cons name fn-names)))
-  `(span ((class "fn-ref")) (a ((href ,(string-append "#" (fn-id name)))
-            (id ,(fnref-id name)))
-           ,(number->urdu-fn-string (length (member name fn-names))))))
 
+#|
+ ح tag for referring to a footnote. This tag has two variants:
+ 
+ 1. ‏◊ح{نام-حاشیہ}
+    This is the simple variant where we only mention the footnote name.
+ 2. ‏◊ح['باہر]{نام-حاشیہ}
+    This variant takes a symbol (‏'باہر) too, which is then used to append an extra
+    CSS class (which, in turn, is used to position the footnote reference differently
+    in the web layout). The purpose of this variant is to refer to those footnotes
+    that are about a whole couplet or stanza. In the content, this tag variant
+    conventionally appears in the beginning of its respective couplet or stanza.
+ |#
+(define (ح . elems)
+  ; Check if we have a symbol in ح (adapted from https://github.com/mbutterick/pollen-users/issues/65#issuecomment-653621118 )
+  (define-values (pos name-in)
+    (cond [(symbol? (car elems)) (values (car elems) (cdr elems))]
+          [else (values 'none elems)]))
+  
+  (define name (apply string-append name-in))
+  (set! fn-names (if (member name fn-names) fn-names (cons name fn-names)))
+  `(span ((class ,(if (equal? pos 'باہر) "fn-ref out" "fn-ref")))
+            (a ((href ,(string-append "#" (fn-id name)))
+                (id ,(fnref-id name)))
+               ,(number->urdu-fn-string (length (member name fn-names))))))
+
+; The حاشیہ tag for containing the actual footnote
 (define fndefs (make-hash))
 (define (حاشیہ name . xs)
   (hash-set! fndefs (format "~a" name) xs))

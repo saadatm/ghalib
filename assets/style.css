@@ -207,11 +207,22 @@ header[role="banner"] a:hover {
 }
 
 .fn-ref a {
+    line-height: 1;
     position: absolute;
     unicode-bidi: bidi-override;
-    top: -1.3em;
+    top: -0.25em;
     left: 0;
     transform: translateX(50%);
+}
+
+.fn-ref.out {
+    position: static;
+}
+
+.fn-ref.out a {
+    top: 50%;
+    transform: translate(0, -50%);
+    left: calc(100% + 0.45em);
 }
 
 .footnotes {
@@ -261,7 +272,7 @@ header[role="banner"] a:hover {
  */
 
 .poetry {
-    width: 100%;
+    width: 90%;
     max-width: 20rem;
     margin: 0 auto calc(var(--global-line-height) * 1em);
 }
@@ -274,6 +285,12 @@ header[role="banner"] a:hover {
     text-align-last: justify;
     position: relative;
     margin: 0;
+}
+
+@media(min-width: 30rem) {
+    .poetry {
+        width: 100%;
+    }
 }
 
 @media(min-width: 40rem) {
