@@ -225,6 +225,10 @@ header[role="banner"] a:hover {
     right: calc(100% + 0.45em);
 }
 
+.fn-ref.static a {
+    position: static;
+}
+
 .footnotes {
     font-size: 0.8em;
 }

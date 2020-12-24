@@ -57,7 +57,7 @@
 (define fn-names null)
 
 #|
- ح tag for referring to a footnote. This tag has two variants:
+ ح tag for referring to a footnote. This tag has the following variants:
  
  1. ‏◊ح{نام-حاشیہ}
     This is the simple variant where we only mention the footnote name.
@@ -67,6 +67,12 @@
     in the web layout). The purpose of this variant is to refer to those footnotes
     that are about a whole couplet or stanza. In the content, this tag variant
     conventionally appears at the end of its respective couplet or stanza.
+ 3. ‏◊ح['ساکت]{نام-حاشیہ}
+    This variant takes a symbol (‏'ساکت), which is then used to append an extra
+    CSS class (which, in turn, is used to position the footnote reference without
+    absolute positioning in the web layout). The purpose of this variant is to refer
+    to those footnotes that are about a whole ghazal. In the content, this tag variant
+    conventionally appears inside a درمیان tag that comes before a شاعری tag.
  |#
 (define (ح . elems)
   ; Check if we have a symbol in ح (adapted from https://github.com/mbutterick/pollen-users/issues/65#issuecomment-653621118 )
@@ -76,7 +82,9 @@
   
   (define name (apply string-append name-in))
   (set! fn-names (if (member name fn-names) fn-names (cons name fn-names)))
-  `(span ((class ,(if (equal? pos 'باہر) "fn-ref out" "fn-ref")))
+  `(span ((class ,(cond [(equal? pos 'باہر) "fn-ref out"]
+                        [(equal? pos 'ساکت) "fn-ref static"]
+                        [else "fn-ref"])))
             (a ((href ,(string-append "#" (fn-id name)))
                 (id ,(fnref-id name)))
                ,(number->urdu-fn-string (length (member name fn-names))))))
