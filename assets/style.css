@@ -196,6 +196,10 @@ header[role="banner"] a:hover {
     padding-right: calc(var(--global-line-height) * 1em);
 }
 
+.content .center {
+    text-align: center;
+}
+
 .content .signature {
     margin-top: calc(var(--global-line-height) * 1em);
     text-indent: 0;
@@ -253,6 +257,11 @@ header[role="banner"] a:hover {
 .fn-author {
     color: var(--color-text-light);
     margin-right: 0.25em;
+}
+
+.poetic-sign {
+    font-size: 0.9em;
+    margin: 0 0.375em;
 }
 
 /* @media(min-width: 40rem) { */

@@ -119,6 +119,12 @@
 (define (دستخط . content)
   `(p ((class "signature")) ,@content))
 
+(define (درمیان . content)
+  `(p ((class "center")) ,@content))
+
+(define (علامت sign)
+  `(span ((class "poetic-sign")) ,sign))
+
 ; This function will take the elements of a 'شاعری txexpr and splice the contents of
 ; its nested tags (if any). 'span tags and their contents (which will have come from a
 ; footnotes reference) will be entirely removed.
