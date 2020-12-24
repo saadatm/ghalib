@@ -222,7 +222,7 @@ header[role="banner"] a:hover {
 .fn-ref.out a {
     top: 50%;
     transform: translate(0, -50%);
-    left: calc(100% + 0.45em);
+    right: calc(100% + 0.45em);
 }
 
 .footnotes {

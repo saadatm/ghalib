@@ -66,7 +66,7 @@
     CSS class (which, in turn, is used to position the footnote reference differently
     in the web layout). The purpose of this variant is to refer to those footnotes
     that are about a whole couplet or stanza. In the content, this tag variant
-    conventionally appears in the beginning of its respective couplet or stanza.
+    conventionally appears at the end of its respective couplet or stanza.
  |#
 (define (ح . elems)
   ; Check if we have a symbol in ح (adapted from https://github.com/mbutterick/pollen-users/issues/65#issuecomment-653621118 )
