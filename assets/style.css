@@ -206,6 +206,17 @@ header[role="banner"] a:hover {
     text-align: left;
 }
 
+.qitah dd:first-of-type::before {
+    content: "ق";
+    font-size: 0.8em;
+    line-height: 1;
+    color: var(--color-text-light);
+    position: absolute;
+    left: calc(100% + 0.65em);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .fn-ref {
     position: relative;
 }
@@ -271,11 +282,12 @@ header[role="banner"] a:hover {
     /* } */
 /* } */
 
-/* @media(min-width: 75rem) { */
-    /* .content { */
-        /* max-width: 42rem; */
-    /* } */
-/* } */
+@media(min-width: 75rem) {
+    .qitah dd:first-of-type::before {
+        left: auto;
+        right: calc(100% + 0.75em);
+    }
+}
 
 
 /*
