@@ -65,8 +65,8 @@
     This variant takes a symbol (‏'باہر) too, which is then used to append an extra
     CSS class (which, in turn, is used to position the footnote reference differently
     in the web layout). The purpose of this variant is to refer to those footnotes
-    that are about a whole couplet or stanza. In the content, this tag variant
-    conventionally appears at the end of its respective couplet or stanza.
+    that are about a whole line/misra or couplet/stanza. In the content, this tag variant
+    typically appears at the end of its respective misra or couplet/stanza.
  3. ‏◊ح['ساکت]{نام-حاشیہ}
     This variant takes a symbol (‏'ساکت), which is then used to append an extra
     CSS class (which, in turn, is used to position the footnote reference without
