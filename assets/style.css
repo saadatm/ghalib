@@ -19,19 +19,19 @@
 }
 
     
-@media (min-width: 375px) {
+@media (min-width: 24rem) {
     :root {
-        --root-font-size: 100%;
+        --root-font-size: 102%;
     }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 64rem) {
     :root {
-        --root-font-size: 112.5%;
+        --root-font-size: 114%;
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 90rem) {
     :root {
         --root-font-size: 125%;
     }
@@ -282,13 +282,6 @@ header[role="banner"] a:hover {
     margin: 0 0.375em;
 }
 
-/* @media(min-width: 40rem) { */
-    /* .content { */
-        /* max-width: 35rem; */
-        
-    /* } */
-/* } */
-
 @media(min-width: 75rem) {
     .qitah dd:first-of-type::before {
         left: auto;
@@ -304,8 +297,7 @@ header[role="banner"] a:hover {
  */
 
 .poetry {
-    width: 90%;
-    max-width: 20rem;
+    width: max-content;
     margin: 0 auto calc(var(--global-line-height) * 1em);
 }
 
@@ -319,17 +311,10 @@ header[role="banner"] a:hover {
     margin: 0;
 }
 
-@media(min-width: 30rem) {
+@media(min-width: 36rem) {
     .poetry {
-        width: 100%;
-    }
-}
-
-@media(min-width: 40rem) {
-    .poetry {
-        max-width: 33.5rem;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
     }
 
     .poetry dl {
@@ -338,23 +323,22 @@ header[role="banner"] a:hover {
     }
     
     .poetry dd:nth-child(odd) {
-        grid-column: span 3;
+        grid-column: span 4;
     }
     
     .poetry dd:nth-child(even) {
-        grid-column: span 3 / 6;
+        grid-column: span 4 / 7;
     }
     
     .poetry dl:last-of-type dd {
-        grid-column: 2 / 5;
+        grid-column: 2 / 6;
     }
 }
 
-@media(min-width: 75rem) {
+@media(min-width: 64rem) {
     .poetry {
-        max-width: 42rem;
         grid-template-columns: repeat(4, 1fr);
-        grid-column-gap: calc(1em * var(--global-line-height));
+        grid-column-gap: calc(1.125em * var(--global-line-height));
     }
 
     .poetry dd:nth-child(odd) {
