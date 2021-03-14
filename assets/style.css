@@ -230,11 +230,18 @@ header[role="banner"] a:hover {
     transform: translateX(50%);
 }
 
-.fn-ref.out {
+.fn-ref.start,
+.fn-ref.end {
     position: static;
 }
 
-.fn-ref.out a {
+.fn-ref.start a {
+    top: 50%;
+    transform: translate(0, -50%);
+    left: calc(100% + 0.45em);
+}
+
+.fn-ref.end a {
     top: 50%;
     transform: translate(0, -50%);
     right: calc(100% + 0.45em);

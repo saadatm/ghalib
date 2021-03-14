@@ -61,13 +61,15 @@
  
  1. ‏◊ح{نام-حاشیہ}
     This is the simple variant where we only mention the footnote name.
- 2. ‏◊ح['باہر]{نام-حاشیہ}
-    This variant takes a symbol (‏'باہر) too, which is then used to append an extra
-    CSS class (which, in turn, is used to position the footnote reference differently
-    in the web layout). The purpose of this variant is to refer to those footnotes
-    that are about a whole line/misra or couplet/stanza. In the content, this tag variant
-    typically appears at the end of its respective misra or couplet/stanza.
- 3. ‏◊ح['ساکت]{نام-حاشیہ}
+ 2. ‏◊ح['شروع]{نام-حاشیہ}
+    This variant takes a symbol (‏'شروع), which is then used to append an extra
+    CSS class "start" (which, in turn, is used to position the footnote reference before
+    its respective line/misra or couplet/stanza in the web layout).
+ 3. ‏◊ح['آخر]{نام-حاشیہ}
+    This variant takes a symbol (‏'آخر), which is then used to append an extra
+    CSS class "end" (which, in turn, is used to position the footnote reference after
+    its respective line/misra or couplet/stanza in the web layout).
+ 4. ‏◊ح['ساکت]{نام-حاشیہ}
     This variant takes a symbol (‏'ساکت), which is then used to append an extra
     CSS class (which, in turn, is used to position the footnote reference without
     absolute positioning in the web layout). The purpose of this variant is to refer
@@ -82,7 +84,8 @@
   
   (define name (apply string-append name-in))
   (set! fn-names (if (member name fn-names) fn-names (cons name fn-names)))
-  `(span ((class ,(cond [(equal? pos 'باہر) "fn-ref out"]
+  `(span ((class ,(cond [(equal? pos 'شروع) "fn-ref start"]
+                        [(equal? pos 'آخر) "fn-ref end"]
                         [(equal? pos 'ساکت) "fn-ref static"]
                         [else "fn-ref"])))
             (a ((href ,(string-append "#" (fn-id name)))
