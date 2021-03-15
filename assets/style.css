@@ -355,6 +355,10 @@ header[role="banner"] a:hover {
     }
 }
 
+.footnotes .poetry,
+.footnotes .poetry dl {
+    margin-bottom: 0;
+}
 
 /*
  * ----------------------------------
