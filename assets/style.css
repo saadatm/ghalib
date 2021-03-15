@@ -255,6 +255,10 @@ header[role="banner"] a:hover {
     position: relative;
 }
 
+.footnotes li:not(:last-child) {
+    margin-bottom: calc(0.125em * var(--global-line-height));
+}
+
 .fn-count {
     unicode-bidi: bidi-override;
     position: absolute;
