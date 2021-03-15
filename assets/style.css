@@ -227,7 +227,7 @@ header[role="banner"] a:hover {
     unicode-bidi: bidi-override;
     top: -0.55em;
     left: 0;
-    transform: translateX(50%);
+    transform: translateX(12.5%);
 }
 
 .fn-ref.start,
