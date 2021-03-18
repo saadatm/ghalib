@@ -12,10 +12,8 @@
 ◊(define prev-page (previous here-prime))
 ◊(define next-page (next here-prime))
 
-◊(define (nav location)
-    ◊ul[#:class ◊(if (string=? location "top")
-                    "pages-nav top"
-                    "pages-nav")]{
+◊(define (nav)
+    ◊ul[#:class "pages-nav"]{
         ◊when/splice[prev-page]{
             ◊li[#:class "prev"]{
                 ◊a[#:href ◊(format "/~a" prev-page)]{
@@ -45,9 +43,15 @@
 
 <body>
     <header role="banner">
-        <div class="menu-trigger">
+        ◊when/splice[prev-page]{
+            <a href="◊|(format "/~a" prev-page)|" class="prev-in-header">◊(->html icon-prev)</a>
+        }
+        ◊when/splice[next-page]{
+            <a href="◊|(format "/~a" next-page)|" class="next-in-header">◊(->html icon-next)</a>
+        }
+        <a class="toc-trigger" href="#">
             ◊(->html icon-toc)
-        </div>
+        </a>
         <div class="search-trigger">
             ◊(->html icon-search)
         </div>
@@ -55,7 +59,7 @@
     </header>
     
     ◊(->html doc #:tag 'article #:attrs '((class "content")))
-    ◊(->html (nav "bottom"))
+    ◊(->html (nav))
 
 </body>
 
