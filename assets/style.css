@@ -170,7 +170,7 @@ header[role="banner"] a:hover {
 .content {
     width: 90%;
     max-width: 42rem;
-    margin: calc(var(--global-line-height) * 1em) auto auto;
+    margin: calc(var(--global-line-height) * 1rem) auto;
 }
 
 .content h2 {
@@ -369,7 +369,7 @@ header[role="banner"] a:hover {
 .pages-nav {
     list-style: none;
     padding: 0;
-    margin: calc(var(--global-line-height) * 1rem) 0 0 0;
+    margin: 0;
 }
 
 .pages-nav li {
