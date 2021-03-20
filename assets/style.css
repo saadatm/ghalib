@@ -67,7 +67,6 @@ a {
     text-decoration: none;
 }
 
-
 /*
  * -----------------------
  * Main header
@@ -360,6 +359,37 @@ header[role="banner"] a:hover {
     margin-bottom: 0;
 }
 
+/*
+ * ----------------------------------
+ * Navigation for a part's pages
+ * ----------------------------------
+ */
+.part-subnav {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto calc(var(--global-line-height) * 1rem);
+    font-size: 0.85em;
+    width: max-content;
+}
+
+@media (min-width: 550px) {
+    .part-subnav {
+        column-count: 2;
+        column-gap: calc(var(--global-line-height) * 1rem);
+    }
+}
+
+@media (min-width: 860px) {
+    .part-subnav {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 1600px) {
+    .part-subnav {
+        column-count: 4;
+    }
+}
 
 /*
  * ----------------------------------
