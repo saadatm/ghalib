@@ -32,6 +32,12 @@
         }
     })
 
+
+◊(define (subnav children)
+    (apply ul #:class "subnav"
+        (for/list ([child (in-list children)])
+            (li (a #:href (format "/~a" child) (select-from-metas 'title child))))))
+
 <html lang="ur" dir="rtl">
 
 <head>
@@ -57,6 +63,8 @@
         </div>
         <h1 class="main-head"><a href="/index.html">کلیاتِ غالبؔ</a></h1>
     </header>
+    
+    ◊(->html (subnav (or (children here) null)))
     
     ◊(->html doc #:tag 'article #:attrs '((class "content")))
     ◊(->html (nav))
