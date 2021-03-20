@@ -177,52 +177,13 @@
 (define (علامت sign)
   `(span ((class "poetic-sign")) ,sign))
 
-; This function will take the elements of a 'شاعری txexpr and splice the contents of
-; its nested tags (if any). 'span tags and their contents (which will have come from a
-; footnotes reference) will be entirely removed.
-(define (splice-poetry xs)
-  (apply append (for/list ([x (in-list xs)])
-                  (if (txexpr? x)
-                      (if (eq? (get-tag x) 'span)
-                          '()
-                          (splice-poetry (get-elements x)))
-                      (list x)))))
-
-; This function finds out the longest line in a poem and 
-; returns a class name based on the length of that longest line
-(define (get-bahr-class ptx)
-  ; Get poetry content in a single string
-  (define temp (splice-poetry ptx))
-  (define poetry-text (apply string-append temp))
-  
-  ; We now have the lines of the whole poem in a single string (separated by line breaks),
-  ; so we split the poem into its lines (by splitting on \n)
-  (define lines (string-split poetry-text (regexp "(\n)+")))
-
-  ; Remove any double (or more) spaces left over by nested tags
-  (define lines-normalized (map (lambda(x)
-                               (string-normalize-spaces x)) lines))
-
-  ; Filter each line so that it only contains alphabets, commas, quotes, question marks,
-  ; exclamation marks... and then find the longest line
-  (define lines-filtered (map (lambda(x)
-                                 (string-replace x (regexp "[^آاأبپتٹثجچحخدڈذرڑزژسشصضطظعغفقکگلمنںوؤہۂۃھءئیےۓ،\"؟! ]") "")) lines-normalized))
-  (define longest-line (first (sort lines-filtered (lambda(x y) (> (string-length x) (string-length y))))))
-  (define longest-line-length (string-length longest-line))
-  (format "~a" longest-line-length)
-
-  (cond
-    [(<= longest-line-length 20) (format "sm ~a" longest-line-length)]
-    [(<= 21 longest-line-length 40) (format "md ~a" longest-line-length)]
-    [(> longest-line-length 40) (format "lg ~a" longest-line-length)])
-)
 
 ; Custom ◊شاعری tag
 ; Excluding span because it will be containing the footnote reference, and
 ; will have come from the processing of ◊ح tag.
 ; Excluding ◊ق because it will be processed later in split-into-lines
 (define (شاعری . content)
-  (txexpr 'div `((class ,(string-append "poetry " (get-bahr-class content)))) (decode-elements content
+  (txexpr 'div '((class "poetry")) (decode-elements content
                                           #:txexpr-elements-proc process-poetry-content
                                           #:exclude-tags '(span ق))))
 
