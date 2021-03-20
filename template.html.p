@@ -12,31 +12,34 @@
 ◊(define prev-page (previous here-prime))
 ◊(define next-page (next here-prime))
 
-◊(define (nav)
-    ◊ul[#:class "pages-nav"]{
-        ◊when/splice[prev-page]{
-            ◊li[#:class "prev"]{
-                ◊a[#:href ◊(format "/~a" prev-page)]{
-                    ◊icon-prev
-                    ◊span{◊(urdu-smart-quotes (select-from-metas 'title prev-page))}
+◊(define (pages-nav)
+    ◊nav[#:aria-label "اگلا اور پچھلا صفحہ"]{
+        ◊ul[#:class "pages-nav"]{
+            ◊when/splice[prev-page]{
+                ◊li[#:class "prev"]{
+                    ◊a[#:href ◊(format "/~a" prev-page)]{
+                        ◊icon-prev
+                        ◊span{◊(urdu-smart-quotes (select-from-metas 'title prev-page))}
+                    }
                 }
             }
-        }
-        ◊when/splice[next-page]{
-            ◊li[#:class "next"]{
-                ◊a[#:href ◊(format "/~a" next-page)]{
-                    ◊span{◊(urdu-smart-quotes (select-from-metas 'title next-page))}
-                    ◊icon-next
+            ◊when/splice[next-page]{
+                ◊li[#:class "next"]{
+                    ◊a[#:href ◊(format "/~a" next-page)]{
+                        ◊span{◊(urdu-smart-quotes (select-from-metas 'title next-page))}
+                        ◊icon-next
+                    }
                 }
             }
         }
     })
 
 
-◊(define (subnav children)
-    (apply ul #:class "subnav"
-        (for/list ([child (in-list children)])
-            (li (a #:href (format "/~a" child) (select-from-metas 'title child))))))
+◊(define (part-subnav children)
+    (nav #:aria-label "اِس حصے کے صفحات"
+        (apply ul #:class "part-subnav"
+            (for/list ([child (in-list children)])
+                (li (a #:href (format "/~a" child) (select-from-metas 'title child)))))))
 
 <html lang="ur" dir="rtl">
 
@@ -63,11 +66,16 @@
         </div>
         <h1 class="main-head"><a href="/index.html">کلیاتِ غالبؔ</a></h1>
     </header>
-    
-    ◊(->html (subnav (or (children here) null)))
-    
-    ◊(->html doc #:tag 'article #:attrs '((class "content")))
-    ◊(->html (nav))
+
+    <main>
+        <article class="content">
+            ◊(->html doc #:splice? #t)
+        </article>
+
+        ◊(->html (part-subnav (or (children here) null)))
+    </main>
+
+    ◊(->html (pages-nav))
 
 </body>
 
