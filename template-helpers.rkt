@@ -17,6 +17,21 @@
         (ul ((class "part-subnav")) ,@subnav-items)))
 
 
+; For breadcrumbs
+(define (get-ancestors node)
+    (define pnode (parent node))
+    (if (false? pnode)
+        (cons node empty)
+        (cons node (get-ancestors pnode))))
+
+(define (make-breadcrumbs page)
+    (define breadcrumb-items
+        (for/list ([item (in-list (reverse (get-ancestors page)))])
+            `(li (a ((href ,(format "/~a" item))) ,(select-from-metas 'title item)))))
+
+    `(ul ((class "breadcrumbs")) ,@breadcrumb-items))
+
+
 ; Define SVG icons (to be used in the template)
 (define icon-toc `(svg ((width "24")
                         (height "24")

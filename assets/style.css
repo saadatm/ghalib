@@ -163,17 +163,55 @@ header[role="banner"] a:hover {
 
 /*
  * -----------------------
- * Article
+ * Main area and article
  * -----------------------
  */
+ 
+main {
+    margin: calc(var(--global-line-height) * 1rem) 0 0;
+}
+
+.breadcrumbs {
+    list-style: none;
+    padding: 0;
+    width: 84%;
+    margin: 0 auto;
+    font-size: 0.8em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+    display: block;
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' stroke='%23676767' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 18 9 12 15 6'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 1rem;
+    height: 1rem;
+    transform: translateY(18%);
+    opacity: 0.75;
+    margin: 0 0.75em;
+}
+
+.breadcrumbs a {
+    color: var(--color-text-light);
+}
+
 .content {
     width: 90%;
     max-width: 42rem;
-    margin: calc(var(--global-line-height) * 1rem) auto;
+    margin: 0 auto calc(var(--global-line-height) * 1rem);
 }
 
 .content h2 {
-    margin: calc(var(--global-line-height) * 1em) 0;
+    margin: 0 0 calc(var(--global-line-height) * 1rem) 0;
     text-align: center;
 }
 
@@ -298,7 +336,7 @@ header[role="banner"] a:hover {
 
 .poetry {
     width: max-content;
-    margin: 0 auto calc(var(--global-line-height) * 1em);
+    margin: calc(1rem * var(--global-line-height)) auto;
 }
 
 .poetry dl {
@@ -356,6 +394,7 @@ header[role="banner"] a:hover {
 
 .footnotes .poetry,
 .footnotes .poetry dl {
+    margin-top: 0;
     margin-bottom: 0;
 }
 

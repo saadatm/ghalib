@@ -53,6 +53,10 @@
     </header>
 
     <main>
+        ◊when/splice[(parent here)]{
+            ◊(->html (make-breadcrumbs here))
+        }
+
         <article class="content">
             ◊(->html doc #:splice? #t)
         </article>
