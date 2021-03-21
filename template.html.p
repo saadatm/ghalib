@@ -1,16 +1,8 @@
 <!doctype html>
 
-◊;{
-    Defining `here-prime` so that our pagetree will work on Windows.
-    For details, see: https://github.com/mbutterick/pollen-users/issues/7#issuecomment-527888595
-    As MB notes in a later comment, it is prudent to use Racket's path manipulation functions
-    instead of just doing a regexp-replace, but I couldn't get them to work; so throwing caution to
-    the wind and just going ahead with this.
-}
-◊(define here-prime (regexp-replace* #rx"[\\]" (symbol->string here) "/"))
-◊(define parent-page (parent here-prime))
-◊(define prev-page (previous here-prime))
-◊(define next-page (next here-prime))
+◊(define parent-page (parent here))
+◊(define prev-page (previous here))
+◊(define next-page (next here))
 
 ◊(define (pages-nav)
     ◊nav[#:aria-label "اگلا اور پچھلا صفحہ"]{
