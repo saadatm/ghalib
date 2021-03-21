@@ -409,6 +409,7 @@ main {
     margin: 0 auto calc(var(--global-line-height) * 1rem);
     font-size: 0.85em;
     width: max-content;
+    max-width: 84%;
 }
 
 @media (min-width: 550px) {
