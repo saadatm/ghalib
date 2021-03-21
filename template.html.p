@@ -1,5 +1,3 @@
-<!doctype html>
-
 ◊(define parent-page (parent here))
 ◊(define prev-page (previous here))
 ◊(define next-page (next here))
@@ -26,12 +24,7 @@
         }
     })
 
-
-◊(define (part-subnav children)
-    (nav #:aria-label "اِس حصے کے صفحات"
-        (apply ul #:class "part-subnav"
-            (for/list ([child (in-list children)])
-                (li (a #:href (format "/~a" child) (select-from-metas 'title child)))))))
+<!doctype html>
 
 <html lang="ur" dir="rtl">
 
