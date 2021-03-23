@@ -27,7 +27,8 @@
 (define (make-breadcrumbs page)
     (define breadcrumb-items
         (for/list ([item (in-list (reverse (get-ancestors page)))])
-            `(li (a ((href ,(format "/~a" item))) ,(select-from-metas 'title item)))))
+            `(li (a ((href ,(format "/~a" item))) ,(or (select-from-metas 'breadcrumb-label item)
+                                                       (select-from-metas 'title item))))))
 
     `(ul ((class "breadcrumbs")) ,@breadcrumb-items))
 

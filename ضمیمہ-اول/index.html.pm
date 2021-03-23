@@ -1,6 +1,7 @@
 #lang pollen
 
-◊(define-meta title "ضمیمۂ اوّل")
+◊(define-meta title "ضمیمۂ اوّل: از نوائے سروش (نسخۂ مہر)"
+              breadcrumb-label "ضمیمۂ اوّل")
 
 ◊سرخی{ضمیمۂ اوّل: از نوائے سروش (نسخۂ مہر)}
 
