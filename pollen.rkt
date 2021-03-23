@@ -131,6 +131,11 @@
 (define (علامت sign)
   `(span ((class "poetic-sign")) ,sign))
 
+(define (عربی . content)
+  `(span ((lang "ar") (class "ar")) ,@content))
+
+(define (انگریزی . content)
+  `(span ((lang "en") (dir "ltr") (class "en")) ,@content))
 
 ; Custom ◊شاعری tag
 ; Excluding span because it will be containing the footnote reference, and
