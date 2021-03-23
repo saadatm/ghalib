@@ -5,10 +5,10 @@
 (require txexpr)
 (require sugar)
 
-(provide (all-defined-out))
-
 (require "template-helpers.rkt")
 (provide (all-from-out "template-helpers.rkt"))
+
+(provide (all-defined-out))
 
 
 ; Define some of the custom tags as block
@@ -121,6 +121,9 @@
 
 (define (سرخی . heading)
   `(h2 ,@heading))
+  
+(define (ربط url . text)
+  `(a ((href ,url)) ,@text))
 
 (define (دستخط . content)
   `(p ((class "signature")) ,@content))
