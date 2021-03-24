@@ -190,4 +190,4 @@
   ;(txexpr 'root empty (decode-elements (get-elements content-with-footnotes)
   (txexpr 'root empty (decode-elements content
                           #:txexpr-elements-proc decode-paragraphs
-                          #:string-proc (compose1 urdu-smart-quotes smart-dashes))))
+                          #:string-proc urdu-smart-quotes)))
