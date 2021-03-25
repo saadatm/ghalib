@@ -140,15 +140,32 @@
 (define (انگریزی . content)
   `(span ((lang "en") (dir "ltr") (class "en")) ,@content))
 
-; Custom ◊شاعری tag
-; Excluding span because it will be containing the footnote reference, and
-; will have come from the processing of ◊ح tag.
-; Excluding ◊ق because it will be processed later in split-into-lines
-(define (شاعری . content)
-  (txexpr 'div '((class "poetry")) (decode-elements content
+
+#|
+Custom tags for handling poetry.
+
+The generic شاعری tag does all the heavy lifting. Other convenience
+functions call شاعری with a specific CSS class name for styling variations.
+|#
+(define (غزل . content)
+    (apply شاعری #:class "ghazal" content))
+
+(define (رباعی . content)
+    (apply شاعری #:class "rubai" content))
+
+(define (قطعہ . content)
+    (apply شاعری #:class "nazm" content))
+
+(define (شاعری #:class [class-name #f] . content)
+  ; Excluding span because it will be containing the footnote reference, and
+  ; will have come from the processing of ◊ح tag.
+  ; Excluding ◊ق because it will be processed later in split-into-lines
+  (define poetry-tx (txexpr 'div empty (decode-elements content
                                           #:txexpr-elements-proc process-poetry-content
                                           #:exclude-tags '(span ق))))
-
+  (if class-name
+    (attr-set poetry-tx 'class (string-append "poetry " class-name))
+    (attr-set poetry-tx 'class "poetry")))
 
 (define (process-poetry-content elems)
   (define stanzas (decode-paragraphs elems 'p
@@ -156,11 +173,9 @@
                                      #:force? #t))
   (process-stanzas stanzas))
 
-
 (define (process-stanzas lst)
   ; Take each stanza in the list of stanzas and split & tag its lines
   (map split-into-lines lst))
-
 
 (define (split-into-lines tagged-stanza)
   ; Get the elements (which are lines and newlines) of tagged-stanza (which is a txexpr) 
