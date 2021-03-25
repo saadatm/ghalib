@@ -339,11 +339,20 @@ main {
     margin: calc(1rem * var(--global-line-height)) auto;
 }
 
-.poetry dl {
+.poetry p + p {
+    text-indent: 0;
+}
+
+.poetry br {
+    display: none;
+}
+
+.poetry .stanza {
     margin: 0 0 calc(1em * var(--global-line-height)) 0;
 }
 
-.poetry dd {
+.poetry .line {
+    display: block;
     text-align-last: justify;
     position: relative;
     margin: 0;
@@ -355,20 +364,20 @@ main {
         grid-template-columns: repeat(6, 1fr);
     }
 
-    .poetry dl {
+    .poetry .stanza {
         margin: 0;
         display: contents;
     }
     
-    .poetry dd:nth-child(odd) {
+    .poetry .line:nth-of-type(odd) {
         grid-column: span 4;
     }
     
-    .poetry dd:nth-child(even) {
+    .poetry .line:nth-of-type(even) {
         grid-column: span 4 / 7;
     }
     
-    .poetry dl:last-of-type dd {
+    .poetry .stanza:last-of-type .line {
         grid-column: 2 / 6;
     }
 }
@@ -379,21 +388,21 @@ main {
         grid-column-gap: calc(1.125em * var(--global-line-height));
     }
 
-    .poetry dd:nth-child(odd) {
+    .poetry .line:nth-of-type(odd) {
         grid-column: span 2;
     }
     
-    .poetry dd:nth-child(even) {
+    .poetry .line:nth-of-type(even) {
         grid-column: span 2 / 5;
     }
     
-    .poetry dl:last-of-type dd {
+    .poetry .stanza:last-of-type .line {
         grid-column: 2 / 4;
     }
 }
 
 .footnotes .poetry,
-.footnotes .poetry dl {
+.footnotes .poetry .stanza {
     margin-top: 0;
     margin-bottom: 0;
 }

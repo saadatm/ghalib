@@ -170,12 +170,12 @@
   (define lines-list (filter-split lines-content line-break?))
   
   ; Tag each line/list item with dd
-  (define tagged-lines-list (map (lambda(x) (txexpr 'dd empty x)) lines-list))
+  (define tagged-lines-list (map (lambda(x) (txexpr 'span '((class "line")) x)) lines-list))
   
   ; Finally, take the tagged lines and put them in a tagged dl (denoting a stanza)
   (if (is-qitah? tagged-stanza)
-      (txexpr 'dl '((class "qitah")) tagged-lines-list)
-      (txexpr 'dl empty tagged-lines-list)))
+      (txexpr 'p '((class "stanza qitah")) (add-between tagged-lines-list '(br)))
+      (txexpr 'p '((class "stanza")) (add-between tagged-lines-list '(br)))))
 
 
 (define (root . elements)
