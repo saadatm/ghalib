@@ -165,7 +165,10 @@ functions call شاعری with a specific CSS class name for styling variations.
 A description of what is happening in the شاعری tag:
 
 We first process `content` with decode-elements, and use `decode-paragraphs` for all its
-txexprs. This will give us `content-with-paras`, which will have something like this:
+txexprs. (We use the #:force? option to always have a 'p tag around `content`, which will
+come in handy when processing rubais. And we exclude the 'span tag because it will have come
+from the processing of footnote references.) All this will give us `content-with-paras`, which
+will have something like this:
 
 '((p "Line 1 of stanza 1" (br) "Line 2 of stanza 1")
   (p "Line 1 of stanza 2" (br) "Line 2 of stanza 2")
@@ -193,7 +196,9 @@ styling.
 |#
 (define (شاعری #:class [class-name #f] . content)
   (define content-with-paras
-    (decode-elements content #:txexpr-elements-proc decode-paragraphs))
+    (decode-elements content
+                     #:txexpr-elements-proc (lambda (x) (decode-paragraphs x #:force? #t))
+                     #:exclude-tags '(span)))
 
   (define poetry-tx-elems
     (decode-elements content-with-paras

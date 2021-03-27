@@ -385,24 +385,28 @@ main {
     }
     
     .ghazal,
-    .nazm {
+    .nazm,
+    .rubai {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
     }
 
     .ghazal .stanza,
-    .nazm .stanza {
+    .nazm .stanza,
+    .rubai .stanza {
         margin: 0;
         display: contents;
     }
     
     .ghazal .line:nth-of-type(odd),
-    .nazm .line:nth-of-type(odd) {
+    .nazm .line:nth-of-type(odd),
+    .rubai .line:nth-of-type(odd) {
         grid-column: span 4;
     }
     
     .ghazal .line:nth-of-type(even),
-    .nazm .line:nth-of-type(even) {
+    .nazm .line:nth-of-type(even),
+    .rubai .line:nth-of-type(even) {
         grid-column: span 4 / 7;
     }
     
@@ -414,18 +418,21 @@ main {
 
 @media(min-width: 64rem) {
     .ghazal,
-    .nazm {
+    .nazm,
+    .rubai {
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: calc(1.125em * var(--global-line-height));
     }
 
     .ghazal .line:nth-of-type(odd),
-    .nazm .line:nth-of-type(odd) {
+    .nazm .line:nth-of-type(odd),
+    .rubai .line:nth-of-type(odd) {
         grid-column: span 2;
     }
     
     .ghazal .line:nth-of-type(even),
-    .nazm .line:nth-of-type(even) {
+    .nazm .line:nth-of-type(even),
+    .rubai .line:nth-of-type(even) {
         grid-column: span 2 / 5;
     }
     
