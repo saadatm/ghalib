@@ -15,16 +15,14 @@
 (module setup racket/base
   (provide (all-defined-out))
   (require pollen/setup)
-  (define block-tags (append default-block-tags '(شاعری dummy ق سرخی دستخط))))
+  (define block-tags (append default-block-tags '(dummy ق سرخی دستخط شاعری-میں-سرخی))))
 
 
 ; Helper functions
-; To to be used in filter-split. Taken from: http://docs.racket-lang.org/pollen-tfl/_pollen_rkt_.html?q=pollen-tfl#%28elem._%28chunk._~3cdetect-list-items~3e~3a1%29%29
-(define (line-break? elem)
-  (define line-separator-pattern (regexp "\n"))
-  (and (string? elem) (regexp-match line-separator-pattern elem)))
+(define (is-br? e)
+  (equal? '(br) e))
 
-(define (is-qitah? tx)
+(define (has-qitah-mark? tx)
   (equal? 'ق (get-tag tx)))
 
 (define (western-to-urdu-digit d)
@@ -51,6 +49,7 @@
   (smart-quotes str
                 #:double-open "”" #:double-close "“"
                 #:single-open "’" #:single-close "‘"))
+
 
 ; Footnotes
 ; Taken and adapted from: https://groups.google.com/forum/#!topic/pollenpub/laWL4SWx0Zc
@@ -121,7 +120,10 @@
 
 (define (سرخی . heading)
   `(h2 ,@heading))
-  
+
+(define (شاعری-میں-سرخی . content)
+  `(h6 ,@content))
+
 (define (ربط url . text)
   `(a ((href ,url)) ,@text))
 
@@ -156,41 +158,73 @@ functions call شاعری with a specific CSS class name for styling variations.
 (define (قطعہ . content)
     (apply شاعری #:class "nazm" content))
 
+(define (قصیدہ . content)
+    (apply شاعری #:class "nazm" content))
+
+#|
+A description of what is happening in the شاعری tag:
+
+We first process `content` with decode-elements, and use `decode-paragraphs` for all its
+txexprs. This will give us `content-with-paras`, which will have something like this:
+
+'((p "Line 1 of stanza 1" (br) "Line 2 of stanza 1")
+  (p "Line 1 of stanza 2" (br) "Line 2 of stanza 2")
+  (ق "Line 1 of stanza 3" (br) "Line 2 of stanza 3")
+  (p "Line 1 of" (span [footnote reference here]) "stanza 4") (br) "Line 2 of stanza 4")
+  (h6 "Some heading")
+  (p "Line 1 of stanza 5" (br) "Line 2 of stanza 5")
+
+- Each p tag represents a stanza. (Here, I use the word "stanza" to merely denote a group
+  of "lines" (مصرعے). Depending on the genre, the "stanza" may be a شعر, رباعی, بند, مخمس, etc. and
+  may contain more than two lines.)
+- A ق tag is also a stanza, but one that says that there should be a qitah mark shown against
+  this stanza.
+- There may be a footnote reference in a 'span in a line of a stanza. This will have come from
+  the processing of the ◊ح tag.
+- An h6 tag is for things like "مطلعِ ٹانی" or "غزل" among a qaseedah/qitah/nazm/etc. This will have
+  come from the processing of the ◊شاعری-میں-سرخی tag.
+
+Next, we run `decode-elements` again on `content-with-paras`. We specify that its block tags 
+('p and 'ق) should be processed with `process-single-stanza`. We exclude the h6 tag because it
+doesn't need any processing. (Description of `process-single-stanza` is stated with its definition.)
+
+This will give us `poetry-tx-elems`, which are then wrapped in a div, and given a CSS class name for
+styling.
+|#
 (define (شاعری #:class [class-name #f] . content)
-  ; Excluding span because it will be containing the footnote reference, and
-  ; will have come from the processing of ◊ح tag.
-  ; Excluding ◊ق because it will be processed later in split-into-lines
-  (define poetry-tx (txexpr 'div empty (decode-elements content
-                                          #:txexpr-elements-proc process-poetry-content
-                                          #:exclude-tags '(span ق))))
+  (define content-with-paras
+    (decode-elements content #:txexpr-elements-proc decode-paragraphs))
+
+  (define poetry-tx-elems
+    (decode-elements content-with-paras
+                     #:block-txexpr-proc process-single-stanza
+                     #:exclude-tags '(h6)))
+
+  (define poetry-tx (txexpr 'div empty poetry-tx-elems))
+
   (if class-name
     (attr-set poetry-tx 'class (string-append "poetry " class-name))
     (attr-set poetry-tx 'class "poetry")))
 
-(define (process-poetry-content elems)
-  (define stanzas (decode-paragraphs elems 'p
-                                     #:linebreak-proc values ; using values so that nothing is done here (values will return its arguments unchanged)
-                                     #:force? #t))
-  (process-stanzas stanzas))
-
-(define (process-stanzas lst)
-  ; Take each stanza in the list of stanzas and split & tag its lines
-  (map split-into-lines lst))
-
-(define (split-into-lines tagged-stanza)
-  ; Get the elements (which are lines and newlines) of tagged-stanza (which is a txexpr) 
-  (define lines-content (get-elements tagged-stanza))
-  
-  ; Using "\n" as a separator, split the lines into multiple list items. Each list item will denote a line.
-  (define lines-list (filter-split lines-content line-break?))
-  
-  ; Tag each line/list item with dd
-  (define tagged-lines-list (map (lambda(x) (txexpr 'span '((class "line")) x)) lines-list))
-  
-  ; Finally, take the tagged lines and put them in a tagged dl (denoting a stanza)
-  (if (is-qitah? tagged-stanza)
-      (txexpr 'p '((class "stanza qitah")) (add-between tagged-lines-list '(br)))
-      (txexpr 'p '((class "stanza")) (add-between tagged-lines-list '(br)))))
+#|
+This function takes a single stanza (either a 'p or a 'ق)
+|#
+(define (process-single-stanza stanza)
+    ; Take out the elements of a `stanza`
+    (define stanza-elems (get-elements stanza))
+    
+    ; Split its lines by using '(br) as a separator
+    (define lines (filter-split stanza-elems is-br?))
+    
+    ; Tag the lines with a 'span tag and give them a CSS class for styling
+    (define tagged-lines (map (lambda(x) (txexpr 'span '((class "line")) x)) lines))
+    
+    ; Insert '(br) between the tagged lines, and combine them again in a 'p tag with 
+    ; a specific CSS class name for styling. If the `stanza` was a 'ق, give it an
+    ; additional CSS class. 
+    (if (has-qitah-mark? stanza)
+      (txexpr 'p '((class "stanza has-qitah-mark")) (add-between tagged-lines '(br)))
+      (txexpr 'p '((class "stanza")) (add-between tagged-lines '(br)))))
 
 
 (define (root . elements)

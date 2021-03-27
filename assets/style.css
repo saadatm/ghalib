@@ -308,7 +308,7 @@ main {
     margin: 0 0.375em;
 }
 
-.qitah dd:first-of-type::before {
+.has-qitah-mark .line:first-of-type::before {
     content: "ق";
     font-size: 0.8em;
     line-height: 1;
@@ -320,7 +320,7 @@ main {
 }
 
 @media(min-width: 64rem) {
-    .qitah dd:first-of-type::before {
+    .has-qitah-mark .line:first-of-type::before {
         left: auto;
         right: calc(100% + (0.5625em * var(--global-line-height)));
         transform: translate(25%, -50%);
@@ -347,6 +347,12 @@ main {
     display: none;
 }
 
+.poetry h6 { /* for headings between poetry, e.g. مطلعِ ثانی etc. */
+     font-size: 1em;
+     text-align: center;
+     margin: calc(0.75em * var(--global-line-height)) 0 calc(0.25em * var(--global-line-height));
+}
+
 .poetry .line {
     display: block;
     text-align-last: justify;
@@ -358,51 +364,66 @@ main {
 }
 
 /*
- * Ghazal
+ * Genre specific styles below
+ * .ghazal for ghazals
+ * .nazm for qaseedahs, qitahs, sehras, etc.
  */
 .ghazal .stanza {
     margin: 0 0 calc(1em * var(--global-line-height)) 0;
 }
 
 @media(min-width: 36rem) {
-    .ghazal {
+    .poetry h6 {
+        grid-column: 1 / -1;
+    }
+    
+    .ghazal,
+    .nazm {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
     }
 
-    .ghazal .stanza {
+    .ghazal .stanza,
+    .nazm .stanza {
         margin: 0;
         display: contents;
     }
     
-    .ghazal .line:nth-of-type(odd) {
+    .ghazal .line:nth-of-type(odd),
+    .nazm .line:nth-of-type(odd) {
         grid-column: span 4;
     }
     
-    .ghazal .line:nth-of-type(even) {
+    .ghazal .line:nth-of-type(even),
+    .nazm .line:nth-of-type(even) {
         grid-column: span 4 / 7;
     }
     
-    .ghazal .stanza:last-of-type .line {
+    .ghazal .stanza:last-of-type .line,
+    .nazm .stanza:last-of-type .line {
         grid-column: 2 / 6;
     }
 }
 
 @media(min-width: 64rem) {
-    .ghazal {
+    .ghazal,
+    .nazm {
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: calc(1.125em * var(--global-line-height));
     }
 
-    .ghazal .line:nth-of-type(odd) {
+    .ghazal .line:nth-of-type(odd),
+    .nazm .line:nth-of-type(odd) {
         grid-column: span 2;
     }
     
-    .ghazal .line:nth-of-type(even) {
+    .ghazal .line:nth-of-type(even),
+    .nazm .line:nth-of-type(even) {
         grid-column: span 2 / 5;
     }
     
-    .ghazal .stanza:last-of-type .line {
+    .ghazal .stanza:last-of-type .line,
+    .nazm .stanza:last-of-type .line {
         grid-column: 2 / 4;
     }
 }
