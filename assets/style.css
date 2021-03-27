@@ -339,6 +339,10 @@ main {
     margin: 0 auto calc(1rem * var(--global-line-height));
 }
 
+.content > .poetry:first-child {
+    margin: calc(1rem * var(--global-line-height)) auto;
+}
+
 .poetry p + p {
     text-indent: 0;
 }
