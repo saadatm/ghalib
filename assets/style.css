@@ -279,6 +279,7 @@ main {
 }
 
 .footnotes {
+    margin-top: calc(1em * var(--global-line-height));
     font-size: 0.8em;
 }
 
@@ -339,6 +340,17 @@ main {
     text-underline-offset: -1.35em;
 }
 
+
+.separator-ornament {
+    display: block;
+    margin: 0 auto;
+}
+
+.separator-ornament .petals,
+.separator-ornament .flowers {
+    stroke: var(--color-text-light);
+}
+
 /*
  * -----------------------
  * Poetry
@@ -350,7 +362,8 @@ main {
     margin: 0 auto calc(1rem * var(--global-line-height));
 }
 
-.content > .poetry:first-child {
+.content > .poetry:first-child,
+.separator-ornament + .poetry {
     margin: calc(1rem * var(--global-line-height)) auto;
 }
 

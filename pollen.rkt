@@ -15,7 +15,7 @@
 (module setup racket/base
   (provide (all-defined-out))
   (require pollen/setup)
-  (define block-tags (append default-block-tags '(dummy ق سرخی دستخط شاعری-میں-سرخی))))
+  (define block-tags (append default-block-tags '(dummy svg ق سرخی دستخط شاعری-میں-سرخی))))
 
 
 ; Helper functions
@@ -260,14 +260,13 @@ This function takes a single stanza (either a 'p or a 'ق)
       (txexpr 'p '((class "stanza has-qitah-mark")) (add-between tagged-lines '(br)))
       (txexpr 'p '((class "stanza")) (add-between tagged-lines '(br)))))
 
-
 (define (root . elements)
   ; If footnote-block is not '(dummy), include it at the end of elements
   (define content (if (equal? 'dummy (get-tag (footnote-block)))
                                      ;`(root ,@elements)
                                      ;`(root ,@elements ,(footnote-block))))
                                      `(,@elements)
-                                     `(,@elements ,(footnote-block))))
+                                     `(,@elements ,separator-ornament ,(footnote-block))))
 
   ; Now run decode-elements on content-with-footnotes
   ;(txexpr 'root empty (decode-elements (get-elements content-with-footnotes)
