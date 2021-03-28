@@ -167,14 +167,16 @@ functions call شاعری with a specific CSS class name for styling variations.
 (define (مثنوی . content)
     (apply شاعری #:class "nazm" content))
 
+(define (شعر . content)
+    (apply شاعری #:class "couplet" content))
 #|
 A description of what is happening in the شاعری tag:
 
 We first process `content` with decode-elements, and use `decode-paragraphs` for all its
 txexprs. When calling `decode-paragraphs`, we look at the `class-name` argument to see
-whether the poetry content is a rubai, and if yes, use the #:force? option to always have
-a 'p tag around `content`. This is necessary because a rubai is just four lines separated
-by line breaks with no implicit paragraph break. We also exclude:
+whether the poetry content is a rubai or a couplet, and if yes, use the #:force? option to
+always have a 'p tag around `content`. This is necessary because a rubai/couplet is just
+four/two lines separated by line breaks with no implicit paragraph break. We also exclude:
   (i) the 'span tag because it will have come from the processing of footnote references, and
  (ii) the 'i tag because it will have come from the processing of خک tag.
 
@@ -206,7 +208,9 @@ styling.
 |#
 (define (شاعری #:class [class-name #f] . content)
   (define (force-paras? x)
-    (equal? x "rubai"))
+    (or
+      (equal? x "rubai")
+      (equal? x "couplet")))
 
   (define content-with-paras
     (decode-elements content
