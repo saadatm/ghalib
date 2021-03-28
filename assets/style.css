@@ -384,7 +384,8 @@ main {
  * .nazm for qaseedahs, qitahs, sehras, etc.
  */
 .ghazal .stanza,
-.musaddas .stanza {
+.musaddas .stanza,
+.mukhammas .stanza {
     margin: 0 0 calc(1em * var(--global-line-height)) 0;
 }
 
@@ -396,7 +397,8 @@ main {
     .ghazal,
     .nazm,
     .rubai,
-    .musaddas {
+    .musaddas,
+    .mukhammas {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
     }
@@ -404,7 +406,8 @@ main {
     .ghazal .stanza,
     .nazm .stanza,
     .rubai .stanza,
-    .musaddas .stanza {
+    .musaddas .stanza,
+    .mukhammas .stanza {
         margin: 0;
         display: contents;
     }
@@ -422,15 +425,18 @@ main {
         grid-column: span 4 / 7;
     }
     
-    .musaddas .line {
+    .musaddas .line,
+    .mukhammas .line {
         grid-column: span 4;
     }
     
-    .musaddas .line:nth-of-type(n+5) {
+    .musaddas .line:nth-of-type(n+5),
+    .mukhammas .line:nth-of-type(n+5) {
         grid-column: span 4 / 7;
     }
     
-    .musaddas .line:last-of-type {
+    .musaddas .line:last-of-type,
+    .mukhammas .line:last-of-type {
         margin-bottom: calc(1em * var(--global-line-height));
     }
     
@@ -444,7 +450,8 @@ main {
     .ghazal,
     .nazm,
     .rubai,
-    .musaddas {
+    .musaddas,
+    .mukhammas {
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: calc(1.125em * var(--global-line-height));
     }
@@ -452,20 +459,23 @@ main {
     .ghazal .line:nth-of-type(odd),
     .nazm .line:nth-of-type(odd),
     .rubai .line:nth-of-type(odd),
-    .musaddas .line:nth-of-type(odd) {
+    .musaddas .line:nth-of-type(odd),
+    .mukhammas .line:nth-of-type(odd) {
         grid-column: span 2;
     }
     
     .ghazal .line:nth-of-type(even),
     .nazm .line:nth-of-type(even),
     .rubai .line:nth-of-type(even),
-    .musaddas .line:nth-of-type(even) {
+    .musaddas .line:nth-of-type(even),
+    .mukhammas .line:nth-of-type(even) {
         grid-column: span 2 / 5;
     }
     
     .ghazal .stanza:last-of-type .line,
     .nazm .stanza:last-of-type .line,
-    .musaddas .line:nth-of-type(n+5) {
+    .musaddas .line:nth-of-type(n+5),
+    .mukhammas .line:nth-of-type(n+5) {
         grid-column: 2 / 4;
     }
     

@@ -173,6 +173,9 @@ functions call شاعری with a specific CSS class name for styling variations.
 (define (سلام . content)
     (apply شاعری #:class "nazm" content))
 
+(define (مخمس . content)
+    (apply شاعری #:class "mukhammas" content))
+
 (define (شعر . content)
     (apply شاعری #:class "couplet" content))
 #|
