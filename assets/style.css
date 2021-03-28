@@ -415,12 +415,14 @@ main {
     
     .ghazal .line:nth-of-type(odd),
     .nazm .line:nth-of-type(odd),
+    .nazm .stanza:nth-of-type(2) .line:nth-of-type(odd),
     .rubai .line:nth-of-type(odd) {
         grid-column: span 4;
     }
     
     .ghazal .line:nth-of-type(even),
     .nazm .line:nth-of-type(even),
+    .nazm .stanza:nth-of-type(2) .line:nth-of-type(even),
     .rubai .line:nth-of-type(even) {
         grid-column: span 4 / 7;
     }
@@ -458,6 +460,7 @@ main {
 
     .ghazal .line:nth-of-type(odd),
     .nazm .line:nth-of-type(odd),
+    .nazm .stanza:nth-of-type(2) .line:nth-of-type(odd),
     .rubai .line:nth-of-type(odd),
     .musaddas .line:nth-of-type(odd),
     .mukhammas .line:nth-of-type(odd) {
@@ -466,6 +469,7 @@ main {
     
     .ghazal .line:nth-of-type(even),
     .nazm .line:nth-of-type(even),
+    .nazm .stanza:nth-of-type(2) .line:nth-of-type(even),
     .rubai .line:nth-of-type(even),
     .musaddas .line:nth-of-type(even),
     .mukhammas .line:nth-of-type(even) {
@@ -478,7 +482,6 @@ main {
     .mukhammas .line:nth-of-type(n+5) {
         grid-column: 2 / 4;
     }
-    
 }
 
 
