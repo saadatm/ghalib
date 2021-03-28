@@ -164,6 +164,9 @@ functions call شاعری with a specific CSS class name for styling variations.
 (define (قصیدہ . content)
     (apply شاعری #:class "nazm" content))
 
+(define (مثنوی . content)
+    (apply شاعری #:class "nazm" content))
+
 #|
 A description of what is happening in the شاعری tag:
 
