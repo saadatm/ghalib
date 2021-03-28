@@ -383,7 +383,8 @@ main {
  * .ghazal for ghazals
  * .nazm for qaseedahs, qitahs, sehras, etc.
  */
-.ghazal .stanza {
+.ghazal .stanza,
+.musaddas .stanza {
     margin: 0 0 calc(1em * var(--global-line-height)) 0;
 }
 
@@ -394,17 +395,20 @@ main {
     
     .ghazal,
     .nazm,
-    .rubai {
+    .rubai,
+    .musaddas {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
     }
 
     .ghazal .stanza,
     .nazm .stanza,
-    .rubai .stanza {
+    .rubai .stanza,
+    .musaddas .stanza {
         margin: 0;
         display: contents;
     }
+    
     
     .ghazal .line:nth-of-type(odd),
     .nazm .line:nth-of-type(odd),
@@ -418,6 +422,18 @@ main {
         grid-column: span 4 / 7;
     }
     
+    .musaddas .line {
+        grid-column: span 4;
+    }
+    
+    .musaddas .line:nth-of-type(n+5) {
+        grid-column: span 4 / 7;
+    }
+    
+    .musaddas .line:last-of-type {
+        margin-bottom: calc(1em * var(--global-line-height));
+    }
+    
     .ghazal .stanza:last-of-type .line,
     .nazm .stanza:last-of-type .line {
         grid-column: 2 / 6;
@@ -427,27 +443,32 @@ main {
 @media(min-width: 64rem) {
     .ghazal,
     .nazm,
-    .rubai {
+    .rubai,
+    .musaddas {
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: calc(1.125em * var(--global-line-height));
     }
 
     .ghazal .line:nth-of-type(odd),
     .nazm .line:nth-of-type(odd),
-    .rubai .line:nth-of-type(odd) {
+    .rubai .line:nth-of-type(odd),
+    .musaddas .line:nth-of-type(odd) {
         grid-column: span 2;
     }
     
     .ghazal .line:nth-of-type(even),
     .nazm .line:nth-of-type(even),
-    .rubai .line:nth-of-type(even) {
+    .rubai .line:nth-of-type(even),
+    .musaddas .line:nth-of-type(even) {
         grid-column: span 2 / 5;
     }
     
     .ghazal .stanza:last-of-type .line,
-    .nazm .stanza:last-of-type .line {
+    .nazm .stanza:last-of-type .line,
+    .musaddas .line:nth-of-type(n+5) {
         grid-column: 2 / 4;
     }
+    
 }
 
 
