@@ -171,11 +171,14 @@ functions call شاعری with a specific CSS class name for styling variations.
 A description of what is happening in the شاعری tag:
 
 We first process `content` with decode-elements, and use `decode-paragraphs` for all its
-txexprs. (We use the #:force? option to always have a 'p tag around `content`, which will
-come in handy when processing rubais. And we exclude (i) the 'span tag because it will have
-come from the processing of footnote references, and (ii) the 'i tag because it will have
-come from the processing of خک tag.) All this will give us `content-with-paras`, which
-will have something like this:
+txexprs. When calling `decode-paragraphs`, we look at the `class-name` argument to see
+whether the poetry content is a rubai, and if yes, use the #:force? option to always have
+a 'p tag around `content`. This is necessary because a rubai is just four lines separated
+by line breaks with no implicit paragraph break. We also exclude:
+  (i) the 'span tag because it will have come from the processing of footnote references, and
+ (ii) the 'i tag because it will have come from the processing of خک tag.
+
+All this will give us `content-with-paras`, which will have something like this:
 
 '((p "Line 1 of stanza 1" (br) "Line 2 of stanza 1")
   (p "Line 1 of stanza 2" (br) "Line 2 of stanza 2")
@@ -202,9 +205,12 @@ This will give us `poetry-tx-elems`, which are then wrapped in a div, and given 
 styling.
 |#
 (define (شاعری #:class [class-name #f] . content)
+  (define (force-paras? x)
+    (equal? x "rubai"))
+
   (define content-with-paras
     (decode-elements content
-                     #:txexpr-elements-proc (lambda (x) (decode-paragraphs x #:force? #t))
+                     #:txexpr-elements-proc (lambda (x) (decode-paragraphs x #:force? (force-paras? class-name)))
                      #:exclude-tags '(span i)))
 
   (define poetry-tx-elems
