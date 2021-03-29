@@ -351,6 +351,11 @@ main {
     stroke: var(--color-text-light);
 }
 
+.content p + .separator-ornament,
+.content .separator-ornament + p {
+    margin-top: calc(1em * var(--global-line-height));
+}
+
 /*
  * -----------------------
  * Poetry
