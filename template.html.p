@@ -61,7 +61,9 @@
             ◊(->html doc #:splice? #t)
         </article>
 
-        ◊(->html (part-subnav (or (children here) null)))
+        ◊when/splice[(children here)]{
+            ◊(->html (part-subnav (children here)))
+        }
     </main>
 
     ◊(->html (pages-nav))
