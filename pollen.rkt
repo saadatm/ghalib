@@ -90,9 +90,9 @@
                         [(equal? pos 'آخر) "fn-ref end"]
                         [(equal? pos 'ساکت) "fn-ref static"]
                         [else "fn-ref"])))
-            (a ((href ,(string-append "#" (fn-id name)))
-                (id ,(fnref-id name)))
-               ,(number->urdu-fn-string (length (member name fn-names))))))
+         (a ((href ,(string-append "#" (fn-id name)))
+             (id ,(fnref-id name)))
+            ,(number->urdu-fn-string (length (member name fn-names))))))
 
 ; The حاشیہ tag for containing the actual footnote
 (define fndefs (make-hash))
@@ -102,21 +102,20 @@
 (define (footnote-block)
   (define note-items
     (for/list ([fn-name (in-list (reverse fn-names))])
-              `(li ((id ,(fn-id fn-name)))
-                   ,@(append
-                      (list `(span ((class "fn-count")) (a ((href ,(string-append "#" (fnref-id fn-name)))) ,(number->urdu-fn-string (length (member fn-name fn-names))))))
-                      (hash-ref fndefs fn-name)))))
+      `(li ((id ,(fn-id fn-name)))
+           ,@(append
+              (list `(span ((class "fn-count")) (a ((href ,(string-append "#" (fnref-id fn-name)))) ,(number->urdu-fn-string (length (member fn-name fn-names))))))
+              (hash-ref fndefs fn-name)))))
   
   (if (empty? note-items)
-    `(dummy) ; return a dummy txexpr with no elements
-    `(section ((class "footnotes")) (ol ,@note-items))))
+      empty ; return an empty list if there are no note-items
+      `(section ((class "footnotes")) (ol ,@note-items))))
 
 
 ; Custom ◊حم tag (حم = abbreviation of حاشیہ منجانب)
 ; To be used to denote the author of a footnote
-(define (حم . name)
-  (txexpr 'span '((class "fn-author")) (decode-elements name
-                                          #:string-proc (lambda(x) (string-append "—" x)))))
+(define (حم name)
+  `(span ((class "fn-author")) ,(string-append "—" name)))
 
 (define (سرخی . heading)
   `(h2 ,@heading))
@@ -153,34 +152,34 @@ The generic شاعری tag does all the heavy lifting. Other convenience
 functions call شاعری with a specific CSS class name for styling variations.
 |#
 (define (غزل . content)
-    (apply شاعری #:class "ghazal" content))
+  (apply شاعری #:class "ghazal" content))
 
 (define (رباعی . content)
-    (apply شاعری #:class "rubai" content))
+  (apply شاعری #:class "rubai" content))
 
 (define (قطعہ . content)
-    (apply شاعری #:class "nazm" content))
+  (apply شاعری #:class "nazm" content))
 
 (define (قصیدہ . content)
-    (apply شاعری #:class "nazm" content))
+  (apply شاعری #:class "nazm" content))
 
 (define (مثنوی . content)
-    (apply شاعری #:class "nazm" content))
+  (apply شاعری #:class "nazm" content))
 
 (define (سلام . content)
-    (apply شاعری #:class "nazm" content))
+  (apply شاعری #:class "nazm" content))
 
 (define (سہرا . content)
-    (apply شاعری #:class "nazm" content))
+  (apply شاعری #:class "nazm" content))
 
 (define (مخمس . content)
-    (apply شاعری #:class "mukhammas" content))
+  (apply شاعری #:class "mukhammas" content))
 
 (define (مرثیہ . content)
-    (apply شاعری #:class "musaddas" content))
+  (apply شاعری #:class "musaddas" content))
 
 (define (شعر . content)
-    (apply شاعری #:class "couplet" content))
+  (apply شاعری #:class "couplet" content))
 #|
 A description of what is happening in the شاعری tag:
 
@@ -221,8 +220,8 @@ styling.
 (define (شاعری #:class [class-name #f] . content)
   (define (force-paras? x)
     (or
-      (equal? x "rubai")
-      (equal? x "couplet")))
+     (equal? x "rubai")
+     (equal? x "couplet")))
 
   (define content-with-paras
     (decode-elements content
@@ -237,39 +236,38 @@ styling.
   (define poetry-tx (txexpr 'div empty poetry-tx-elems))
 
   (if class-name
-    (attr-set poetry-tx 'class (string-append "poetry " class-name))
-    (attr-set poetry-tx 'class "poetry")))
+      (attr-set poetry-tx 'class (string-append "poetry " class-name))
+      (attr-set poetry-tx 'class "poetry")))
 
-#|
-This function takes a single stanza (either a 'p or a 'ق)
-|#
+; This function takes a single stanza (either a 'p or a 'ق)
 (define (process-single-stanza stanza)
-    ; Take out the elements of a `stanza`
-    (define stanza-elems (get-elements stanza))
+  ; Take out the elements of a `stanza`
+  (define stanza-elems (get-elements stanza))
     
-    ; Split its lines by using '(br) as a separator
-    (define lines (filter-split stanza-elems is-br?))
+  ; Split its lines by using '(br) as a separator
+  (define lines (filter-split stanza-elems is-br?))
     
-    ; Tag the lines with a 'span tag and give them a CSS class for styling
-    (define tagged-lines (map (lambda(x) (txexpr 'span '((class "line")) x)) lines))
+  ; Tag the lines with a 'span tag and give them a CSS class for styling
+  (define tagged-lines (map (lambda(x) (txexpr 'span '((class "line")) x)) lines))
     
-    ; Insert '(br) between the tagged lines, and combine them again in a 'p tag with 
-    ; a specific CSS class name for styling. If the `stanza` was a 'ق, give it an
-    ; additional CSS class. 
-    (if (has-qitah-mark? stanza)
+  ; Insert '(br) again between the tagged lines, and combine them in a 'p tag with 
+  ; a specific CSS class name for styling. If the `stanza` was a 'ق, give it an
+  ; additional CSS class. 
+  (if (has-qitah-mark? stanza)
       (txexpr 'p '((class "stanza has-qitah-mark")) (add-between tagged-lines '(br)))
       (txexpr 'p '((class "stanza")) (add-between tagged-lines '(br)))))
 
-(define (root . elements)
-  ; If footnote-block is not '(dummy), include it at the end of elements
-  (define content (if (equal? 'dummy (get-tag (footnote-block)))
-                                     ;`(root ,@elements)
-                                     ;`(root ,@elements ,(footnote-block))))
-                                     `(,@elements)
-                                     `(,@elements ,separator-ornament ,(footnote-block))))
 
-  ; Now run decode-elements on content-with-footnotes
-  ;(txexpr 'root empty (decode-elements (get-elements content-with-footnotes)
+#|
+The root function
+|#
+(define (root . elements)
+  ; If footnote-block (which is a function) returns a txexpr, include it at the end of elements
+  (define content (if (txexpr? (footnote-block))
+                      `(,@elements ,separator-ornament ,(footnote-block))
+                      elements))
+
+  ; Now run decode-elements on content
   (txexpr 'root empty (decode-elements content
-                          #:txexpr-elements-proc decode-paragraphs
-                          #:string-proc urdu-smart-quotes)))
+                                       #:txexpr-elements-proc decode-paragraphs
+                                       #:string-proc urdu-smart-quotes)))
