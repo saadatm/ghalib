@@ -340,7 +340,6 @@ main {
     text-underline-offset: -1.35em;
 }
 
-
 .separator-ornament {
     display: block;
     margin: 0 auto;
@@ -659,4 +658,141 @@ main {
     .pages-nav .next a {
         justify-content: center;
     }
+}
+
+/*
+ * -----------------------
+ * Index page
+ * -----------------------
+ */
+
+.index {
+    padding-top: 0;
+}
+
+.index main {
+    margin-top: 0;
+}
+
+.cover {
+    max-width: 90%;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: calc(var(--global-line-height) * 0.5rem) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cover-ornament {
+    display: block;
+    margin: 0 auto;
+    max-width: 24rem;
+}
+
+.cover-ornament .drawing {
+    fill: none;
+    stroke: #333;
+}
+
+.cover-ornament .text {
+    fill: #444;
+}
+
+@media(min-width: 36rem) {
+    .cover-ornament {
+        max-width: clamp(25rem, 79vw, 32rem);
+    }
+}
+
+.cover-poet {
+    font-size: 1.25em;
+    text-align: center;
+    margin: calc(var(--global-line-height) * 0.5rem) 0;
+}
+
+.cover-credits {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-column-gap: 1em;
+    justify-content: center;
+}
+
+.cover-credits dt {
+    grid-column: 1;
+    color: var(--color-text-light);
+    text-align: left;
+}
+
+.cover-credits dd {
+    grid-column: 2;
+    margin: 0;
+}
+
+.toc-index {
+    max-width: 90%;
+    margin: 0 auto calc(var(--global-line-height) * 1rem);
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.toc-index > li {
+    border-bottom: 1px solid var(--color-text-accent-light);
+    padding: calc(var(--global-line-height) * 0.5rem) 0;
+}
+
+.toc-index > li:last-child {
+    border-bottom: 0;
+}
+
+.toc-index h3 {
+    margin: 0;
+    font-size: inherit;
+}
+
+.toc-index ul {
+    margin: 0;
+    padding: 0;
+    font-size: 0.85em;
+    list-style: none;
+    columns: 2;
+    column-gap: 1rem;
+}
+
+@media (min-width: 550px) {
+    .toc-index {
+        max-width: max(42%, 67%);
+    }
+    
+    .toc-index ul {
+        columns: 2;
+        column-gap: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 860px) {
+    .toc-index {
+        max-width: min(42%, 67%);
+    }
+}
+
+/*
+ * -----------------------
+ * Misc
+ * -----------------------
+ */
+footer {
+    max-width: 84%;
+    margin: calc(1rem * var(--global-line-height)) auto;
+    font-size: 0.7em;
+    text-align: center;
+    color: var(--color-text-light);
+}
+
+footer p + p {
+    text-indent: 0;
 }

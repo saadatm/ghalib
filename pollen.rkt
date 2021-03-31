@@ -10,6 +10,7 @@
 
 (provide (all-defined-out))
 
+(define github-url "https://github.com/saadatm/ghalib")
 
 ; Define some of the custom tags as block
 (module setup racket/base
