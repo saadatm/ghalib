@@ -355,6 +355,7 @@ h1 .fn-ref a {
     text-decoration: underline;
     text-decoration-color: var(--color-overline);
     text-underline-offset: -1.35em;
+    text-decoration-thickness: 1px;
 }
 
 .separator-ornament {
