@@ -279,6 +279,15 @@ main {
     position: static;
 }
 
+h1 .fn-ref {
+    font-size: 0.666667em;
+}
+
+h1 .fn-ref a {
+    top: -1em;
+    transform: translateX(-12.5%);
+}
+
 .footnotes {
     margin-top: calc(1em * var(--global-line-height));
     font-size: 0.8em;
