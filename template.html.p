@@ -49,7 +49,7 @@
         <div class="search-trigger">
             ◊(->html icon-search)
         </div>
-        <h1 class="main-head"><a href="/index.html">کلیاتِ غالبؔ</a></h1>
+        <a class="main-head" href="/index.html">کلیاتِ غالبؔ</a>
     </header>
 
     <main>
