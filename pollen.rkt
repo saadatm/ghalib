@@ -119,7 +119,7 @@
   `(span ((class "fn-author")) ,(string-append "—" name)))
 
 (define (سرخی . heading)
-  `(h2 ,@heading))
+  `(h1 ,@heading))
 
 (define (شاعری-میں-سرخی . content)
   `(h6 ,@content))

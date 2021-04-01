@@ -215,7 +215,8 @@ main {
     margin: 0 auto calc(var(--global-line-height) * 1rem);
 }
 
-.content h2 {
+.content h1 {
+    font-size: 1.5rem;
     margin: 0 0 calc(var(--global-line-height) * 1rem) 0;
     text-align: center;
 }
