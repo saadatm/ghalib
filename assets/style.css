@@ -1,5 +1,12 @@
 @import "normalize.css";
 
+@font-face {
+    font-family: "nnuw";
+    src: url("NotoNastaliqUrdu-Regular.woff2") format("woff2"), url("NotoNastaliqUrdu-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --color-text: #000;
     --color-text-light: #676767;
@@ -54,7 +61,7 @@ html {
 }
 
 body {
-    font-family: 'Noto Nastaliq Urdu', serif;
+    font-family: 'nnuw', serif;
     background-color: var(--color-bg);
     background: var(--color-bg) radial-gradient(at center center, var(--color-bg), var(--color-bg-2)) repeat fixed 0% 0%;
     padding-top: 2.78125rem;
