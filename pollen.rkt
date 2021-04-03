@@ -180,6 +180,24 @@ Lists. Taken from: https://docs.racket-lang.org/pollen-tfl/_pollen_rkt_.html#%28
   `(i ((class "overline")) ,@content))
 
 #|
+Tags for various subtending marks
+|#
+(define (سال year)
+  (subtending-mark "؁" year))
+
+(define (حاشیہ-نمبر num)
+ (subtending-mark "؂" num))
+
+(define (صفحہ page)
+  (subtending-mark "؃" page))
+
+(define (نمبر num)
+  (subtending-mark "؀" num))
+
+(define (subtending-mark mark num)
+  `(span ((class "subtending-mark")) ,mark ,num))
+
+#|
 Custom tags for handling poetry.
 
 The generic شاعری tag does all the heavy lifting. Other convenience

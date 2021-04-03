@@ -382,6 +382,10 @@ h1 .fn-ref a {
     margin-top: calc(1em * var(--global-line-height));
 }
 
+.subtending-mark {
+    unicode-bidi: bidi-override;
+}
+
 /*
  * -----------------------
  * Poetry
