@@ -800,6 +800,48 @@ h1 .fn-ref a {
 
 /*
  * -----------------------
+ * Full TOC
+ * -----------------------
+ */
+
+.toc-full {
+    font-size: 0.85em;
+}
+
+.toc-full,
+.toc-full ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.toc-full ul ul {
+    padding-right: calc(1em * var(--global-line-height));
+}
+
+.toc-full h2,
+.toc-full h3,
+.toc-full h4,
+.toc-full h5 {
+    font-size: inherit;
+    margin: 0;
+}
+
+.toc-full > li:nth-last-child(-n+4) {
+    margin: calc(1em * var(--global-line-height)) 0;
+}
+
+.toc-full > li:nth-last-child(-n+4) > *:first-child {
+    display: block;
+    text-align: right;
+    font-size: 1.25em;
+    border-top: 2px solid var(--color-text-accent-light);
+    border-bottom: 1px solid var(--color-text-accent-light);
+    padding-bottom: calc(0.1rem * var(--global-line-height))
+}
+
+/*
+ * -----------------------
  * Misc
  * -----------------------
  */
