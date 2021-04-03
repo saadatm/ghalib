@@ -36,6 +36,7 @@
     '(سخن-ہائے-گفتنی.html
       دیوان-غالب-سے-کلیات-غالب-تک.html
       دیوان/index.html
+      ضمیمہ-اول/index.html
       ضمیمہ-دوم/index.html
       ضمیمہ-سوم/index.html
       ضمیمہ-چہارم/index.html)))

@@ -43,7 +43,7 @@
         ◊when/splice[next-page]{
             <a href="◊|(format "/~a" next-page)|" class="next-in-header">◊(->html icon-next)</a>
         }
-        <a class="toc-trigger" href="#">
+        <a class="toc-trigger" href="/فہرست.html">
             ◊(->html icon-toc)
         </a>
         <div class="search-trigger">
