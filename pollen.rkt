@@ -1,5 +1,6 @@
 #lang racket
 
+(require pollen/core)
 (require pollen/decode)
 (require pollen/tag)
 (require txexpr)
@@ -52,13 +53,16 @@
                 #:single-open "’" #:single-close "‘"))
 
 
-; Footnotes
-; Taken and adapted from: https://groups.google.com/forum/#!topic/pollenpub/laWL4SWx0Zc
+#|
+Footnotes. Taken and adapted from:
+https://groups.google.com/forum/#!topic/pollenpub/laWL4SWx0Zc , and
+https://thelocalyarn.com/code/artifact/88b1006b
+|#
 (define (fn-id x) (string-append "حاشیہ-" x))
 (define (fnref-id x) (string-append "ح-" x))
 
-(define fn-names null)
-
+(define all-fn-names (make-hash))
+(define all-fn-defs (make-hash))
 #|
  ح tag for referring to a footnote. This tag has the following variants:
  
@@ -78,7 +82,7 @@
     absolute positioning in the web layout). The purpose of this variant is to refer
     to those footnotes that are about a whole ghazal. In the content, this tag variant
     conventionally appears inside a درمیان tag that comes before a شاعری tag.
- |#
+|#
 (define (ح . elems)
   ; Check if we have a symbol in ح (adapted from https://github.com/mbutterick/pollen-users/issues/65#issuecomment-653621118 )
   (define-values (pos name-in)
@@ -86,28 +90,38 @@
           [else (values 'none elems)]))
   
   (define name (apply string-append name-in))
-  (set! fn-names (if (member name fn-names) fn-names (cons name fn-names)))
+  (define page-path (hash-ref (current-metas) 'here-path))
+  (define page-fn-names (cons name (hash-ref! all-fn-names page-path '())))
+  (hash-set! all-fn-names page-path page-fn-names)
+  
   `(span ((class ,(cond [(equal? pos 'شروع) "fn-ref start"]
                         [(equal? pos 'آخر) "fn-ref end"]
                         [(equal? pos 'ساکت) "fn-ref static"]
                         [else "fn-ref"])))
          (a ((href ,(string-append "#" (fn-id name)))
              (id ,(fnref-id name)))
-            ,(number->urdu-fn-string (length (member name fn-names))))))
+            ,(number->urdu-fn-string (length (member name page-fn-names))))))
 
 ; The حاشیہ tag for containing the actual footnote
-(define fndefs (make-hash))
 (define (حاشیہ name . xs)
-  (hash-set! fndefs (format "~a" name) xs))
+  (define page-path (hash-ref (current-metas) 'here-path))
+  (define page-fn-defs (hash-ref! all-fn-defs page-path make-hash))
+  (hash-set! page-fn-defs (format "~a" name) xs))
 
 (define (footnote-block)
+  (define page-path (hash-ref (current-metas) 'here-path))
+  (define page-fn-names (hash-ref! all-fn-names page-path '()))
+  (define page-fn-defs (hash-ref! all-fn-defs page-path (make-hash)))
+
   (define note-items
-    (for/list ([fn-name (in-list (reverse fn-names))])
+    (for/list ([fn-name (in-list (reverse page-fn-names))])
+      (let* ([fn-def-text (or (hash-ref page-fn-defs fn-name #f)
+                              '("حاشیے کا متن دستیاب نہیں۔"))])
       `(li ((id ,(fn-id fn-name)))
            ,@(append
-              (list `(span ((class "fn-count")) (a ((href ,(string-append "#" (fnref-id fn-name)))) ,(number->urdu-fn-string (length (member fn-name fn-names))))))
-              (hash-ref fndefs fn-name)))))
-  
+              (list `(span ((class "fn-count")) (a ((href ,(string-append "#" (fnref-id fn-name)))) ,(number->urdu-fn-string (length (member fn-name page-fn-names))))))
+              fn-def-text)))))
+
   (if (empty? note-items)
       empty ; return an empty list if there are no note-items
       `(section ((class "footnotes")) (ol ,@note-items))))
