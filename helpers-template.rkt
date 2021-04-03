@@ -1,8 +1,10 @@
 #lang racket
 
-(require pollen/pagetree)
-(require pollen/core)
-(require txexpr)
+(require pollen/pagetree
+         pollen/core
+         txexpr)
+
+(require "helpers-misc.rkt")
 
 (provide (all-defined-out))
 
@@ -11,7 +13,7 @@
 (define (part-subnav children)
     (define subnav-items
         (for/list ([child (in-list children)])
-            `(li (a ((href ,(format "/~a" child))) ,(select-from-metas 'title child)))))
+            `(li (a ((href ,(format "/~a" child))) ,(urdu-smart-quotes (select-from-metas 'title child))))))
     
     `(nav ((aria-label "اِس حصے کے صفحات"))
         (ul ((class "part-subnav")) ,@subnav-items)))
@@ -27,8 +29,8 @@
 (define (make-breadcrumbs page)
     (define breadcrumb-items
         (for/list ([item (in-list (reverse (get-ancestors page)))])
-            `(li (a ((href ,(format "/~a" item))) ,(or (select-from-metas 'breadcrumb-label item)
-                                                       (select-from-metas 'title item))))))
+            `(li (a ((href ,(format "/~a" item))) ,(urdu-smart-quotes (or (select-from-metas 'breadcrumb-label item)
+                                                                          (select-from-metas 'title item)))))))
 
     `(ul ((class "breadcrumbs")) ,@breadcrumb-items))
 

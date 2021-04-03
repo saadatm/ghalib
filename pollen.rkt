@@ -1,13 +1,15 @@
 #lang racket
 
-(require pollen/core)
-(require pollen/decode)
-(require pollen/tag)
-(require txexpr)
-(require sugar)
+(require pollen/core
+         pollen/decode
+         pollen/tag
+         txexpr
+         sugar)
 
-(require "template-helpers.rkt")
-(provide (all-from-out "template-helpers.rkt"))
+(require "helpers-template.rkt"
+         "helpers-misc.rkt")
+(provide (all-from-out "helpers-template.rkt"
+                       "helpers-misc.rkt"))
 
 (provide (all-defined-out))
 
@@ -46,12 +48,6 @@
   (define urdu-lst (map western-to-urdu-digit lst))
   (define urdustring (list->string urdu-lst))
   (format "؂~a" urdustring))
-
-(define (urdu-smart-quotes str)
-  (smart-quotes str
-                #:double-open "”" #:double-close "“"
-                #:single-open "’" #:single-close "‘"))
-
 
 #|
 Footnotes. Taken and adapted from:
