@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>کلیاتِ غالبؔ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <link rel="stylesheet" type="text/css" href="◊|(link-prefix "/assets/style.css")|">
 </head>
 
 <body class="index">

@@ -7,7 +7,7 @@
         ◊ul[#:class "pages-nav"]{
             ◊when/splice[prev-page]{
                 ◊li[#:class "prev"]{
-                    ◊a[#:href ◊(format "/~a" prev-page)]{
+                    ◊a[#:href ◊(link-prefix (format "/~a" prev-page))]{
                         ◊icon-prev
                         ◊span{◊(urdu-smart-quotes (select-from-metas 'title prev-page))}
                     }
@@ -15,7 +15,7 @@
             }
             ◊when/splice[next-page]{
                 ◊li[#:class "next"]{
-                    ◊a[#:href ◊(format "/~a" next-page)]{
+                    ◊a[#:href ◊(link-prefix (format "/~a" next-page))]{
                         ◊span{◊(urdu-smart-quotes (select-from-metas 'title next-page))}
                         ◊icon-next
                     }
@@ -32,24 +32,24 @@
     <meta charset="utf-8">
     <title>◊(select 'title metas) - کلیاتِ غالب</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <link rel="stylesheet" type="text/css" href="◊|(link-prefix "/assets/style.css")|">
 </head>
 
 <body>
     <header role="banner">
         ◊when/splice[prev-page]{
-            <a href="◊|(format "/~a" prev-page)|" class="prev-in-header">◊(->html icon-prev)</a>
+            <a href="◊|(link-prefix (format "/~a" prev-page))|" class="prev-in-header">◊(->html icon-prev)</a>
         }
         ◊when/splice[next-page]{
-            <a href="◊|(format "/~a" next-page)|" class="next-in-header">◊(->html icon-next)</a>
+            <a href="◊|(link-prefix (format "/~a" next-page))|" class="next-in-header">◊(->html icon-next)</a>
         }
-        <a class="toc-trigger" href="/فہرست.html">
+        <a class="toc-trigger" href="◊|(link-prefix "/فہرست.html")|">
             ◊(->html icon-toc)
         </a>
         <div class="search-trigger">
             ◊(->html icon-search)
         </div>
-        <a class="main-head" href="/index.html">کلیاتِ غالبؔ</a>
+        <a class="main-head" href="◊|(link-prefix "/index.html")|">کلیاتِ غالبؔ</a>
     </header>
 
     <main>

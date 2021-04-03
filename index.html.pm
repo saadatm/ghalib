@@ -1,17 +1,13 @@
 #lang pollen
 
-◊(require pollen/pagetree pollen/template sugar/coerce)
+◊(require pollen/pagetree
+          pollen/template
+          "helpers-template.rkt")
 
 ◊(define-meta title "سرورق")
 ◊(define-meta template "template-index.html")
 
 ◊(let () (current-pagetree (get-pagetree "index.ptree")) "")
-
-◊(define (node->link node)
-  (define node-string (->string node))
-  (define link-name (or (select-from-metas 'toc-label node)
-                        (select-from-metas 'title node)))
-  ◊ربط[node-string]{◊link-name})
 
 ◊(define (make-toc-li pagenode [show-children? #f])
   (define node-children (children pagenode))

@@ -135,7 +135,7 @@ https://thelocalyarn.com/code/artifact/88b1006b
   `(h6 ,@content))
 
 (define (ربط url . text)
-  `(a ((href ,url)) ,@text))
+  `(a ((href ,(format "~a" (link-prefix url)))) ,@text))
 
 (define (دستخط . content)
   `(p ((class "signature")) ,@content))
