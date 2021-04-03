@@ -236,10 +236,19 @@ main {
     text-indent: calc(var(--global-line-height) * 1em);
 }
 
-.content ol {
-    list-style-type: persian;
-    margin: calc(var(--global-line-height) * 1em) 0;
+.content > ol,
+.content > ul {
+    margin: calc(var(--global-line-height) * 0.5em) 0;
     padding-right: calc(var(--global-line-height) * 1em);
+}
+
+.content > ol {
+    list-style-type: persian;
+}
+
+.content > ul li::marker {
+    color: var(--color-text-accent);
+    content: '◂';
 }
 
 .content .center {

@@ -123,6 +123,29 @@ https://thelocalyarn.com/code/artifact/88b1006b
       `(section ((class "footnotes")) (ol ,@note-items))))
 
 
+#|
+Lists. Taken from: https://docs.racket-lang.org/pollen-tfl/_pollen_rkt_.html#%28def._%28%28lib._pollen-tfl%2Fpollen..rkt%29._detect-list-items%29%29
+|#
+(define (detect-list-items elems)
+  (define elems-merged (merge-newlines elems))
+  (define (list-item-break? elem)
+    (define list-item-separator-pattern (regexp "\n\n\n+"))
+    (and (string? elem) (regexp-match list-item-separator-pattern elem)))
+  (define list-of-li-elems (filter-split elems-merged list-item-break?))
+  (define list-of-li-paragraphs
+    (map (lambda(li) (decode-paragraphs li #:force? #t)) list-of-li-elems))
+  (define li-tag (default-tag-function 'li))
+  (map (lambda(lip) (apply li-tag lip)) list-of-li-paragraphs))
+
+(define (make-list-function tag [attrs empty])
+  (define (listifier . args)
+    (list* tag attrs (detect-list-items args)))
+  listifier)
+
+(define سادہ-فہرست (make-list-function 'ul))
+
+(define عددی-فہرست (make-list-function 'ol))
+
 ; Custom ◊حم tag (حم = abbreviation of حاشیہ منجانب)
 ; To be used to denote the author of a footnote
 (define (حم name)
