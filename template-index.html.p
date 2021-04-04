@@ -84,6 +84,8 @@
             </dl>
         </div>
         ◊(->html doc #:splice? #t)
+        
+        <p class="full-toc-link"><a href="◊|(link-prefix "/فہرست.html")|">(مکمل فہرست)</a></p>
     </main>
     
     ◊(->html separator-ornament)
