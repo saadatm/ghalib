@@ -183,7 +183,10 @@ Lists. Taken from: https://docs.racket-lang.org/pollen-tfl/_pollen_rkt_.html#%28
 Tags for various subtending marks
 |#
 (define (سال year)
-  (subtending-mark "؁" year))
+  ; Not doing anything in here till a bug in Noto Nastaliq Urdu is fixed:
+  ;   https://github.com/googlefonts/noto-fonts/issues/1620
+  ;(subtending-mark "؁" year))
+  year)
 
 (define (حاشیہ-نمبر num)
  (subtending-mark "؂" num))
