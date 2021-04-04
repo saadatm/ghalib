@@ -73,7 +73,7 @@
                 </g>
             </svg>
             
-            <p class="cover-poet">مِیرزا اسد اللّٰہ خان غالبؔ</p>
+            <p class="cover-poet"><span class="mr">مِر</span><span class="z">ز</span>ا ا<span class="sd">سد</span> ا<span class="llh">للّٰہ</span> <span class="kha">خا</span>ن <span class="gha">غا</span>لبؔ</p>
             
             <dl class="cover-credits">
                 <dt>مُرتّبہ</dt>

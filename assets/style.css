@@ -775,6 +775,38 @@ h1 .fn-ref a {
     margin: calc(var(--global-line-height) * 0.5rem) 0;
 }
 
+.cover-poet span {
+    display: inline-block;
+}
+
+.cover-poet .mr {
+    transform: translateY(-0.061274em);
+    margin-left: -0.061274em;
+}
+
+.cover-poet .z {
+    transform: translateY(-0.061274em);
+}
+
+.cover-poet .sd {
+    transform: translateY(-0.061274em);
+}
+
+.cover-poet .llh {
+    transform: translateY(0.061274em);
+    margin-right: 0.061274em;
+}
+
+.cover-poet .kha {
+    transform: translateY(-0.061274em);
+    margin-left: -0.061274em;
+}
+
+.cover-poet .gha {
+    transform: translateY(-0.061274em);
+    margin-left: -0.061274em;
+}
+
 .cover-credits {
     margin: 0 auto;
     display: grid;
