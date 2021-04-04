@@ -29,7 +29,6 @@
     --bp: 768px;
 }
 
-    
 @media (min-width: 24rem) {
     :root {
         --root-font-size: 102%;
@@ -61,7 +60,7 @@ html {
 }
 
 body {
-    font-family: 'nnuw', serif;
+    font-family: 'nnuw', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
     background-color: var(--color-bg);
     background: var(--color-bg) radial-gradient(at center center, var(--color-bg), var(--color-bg-2)) repeat fixed 0% 0%;
     padding-top: 2.78125rem;
@@ -77,6 +76,10 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: var(--color-text-accent);
     text-decoration: none;
+}
+
+.en {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
 }
 
 /*
