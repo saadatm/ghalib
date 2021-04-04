@@ -30,7 +30,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>◊(select 'title metas) - کلیاتِ غالب</title>
+    <title>◊(select 'title metas) - کُلیاتِ غالبؔ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="◊|(link-prefix "/assets/style.css")|">
 </head>
@@ -49,7 +49,7 @@
         <div class="search-trigger">
             ◊(->html icon-search)
         </div>
-        <a class="main-head" href="◊|(link-prefix "/index.html")|">کلیاتِ غالبؔ</a>
+        <a class="main-head" href="◊|(link-prefix "/index.html")|">کُلّیاتِ غالبؔ</a>
     </header>
 
     <main>
