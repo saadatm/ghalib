@@ -1,10 +1,10 @@
-name: Build the book
+name: Build and deploy the book
 
 on: push
 
 jobs:
   build-the-book:
-    name: Build the book using Pollen
+    name: Build the book using Pollen, and deploy to GitHub Pages
     runs-on: ubuntu-latest
 
     steps:
@@ -29,3 +29,9 @@ jobs:
           raco pollen render -p
           raco pollen render فہرست.html
           raco pollen publish . $HOME/ghalib-dist
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: $HOME/ghalib-dist
