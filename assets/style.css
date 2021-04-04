@@ -399,6 +399,25 @@ h1 .fn-ref a {
     unicode-bidi: bidi-override;
 }
 
+.credits dt {
+    color: var(--color-text-light);
+}
+
+.credits dd {
+    margin: 0 0 calc(1em * var(--global-line-height)) 0;
+}
+
+@media(min-width: 36rem) {
+    .credits {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        grid-column-gap: calc(0.5em * var(--global-line-height));
+    }
+    
+    .credits dt {
+        text-align: left;
+    }
+}
 /*
  * -----------------------
  * Poetry
