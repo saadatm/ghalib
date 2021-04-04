@@ -1,0 +1,31 @@
+name: Build the book
+
+on: push
+
+jobs:
+  build-the-book:
+    name: Build the book using Pollen
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Racket
+        uses: Bogdanp/setup-racket@v1.1
+        with:
+            architecture: 'x64'
+            distribution: 'full'
+            variant: 'CS'
+            version: 'stable'
+
+      - name: Install Pollen and its dependencies
+        run: raco pkg install --auto --batch pollen
+      
+      - name: Build the book
+        env:
+          POLLEN: GH_PAGES
+        run: |
+          raco pollen render -p
+          raco pollen render فہرست.html
+          raco pollen publish . $HOME/ghalib-dist
