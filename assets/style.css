@@ -246,6 +246,14 @@ main {
     list-style-type: persian;
 }
 
+.content > ol ol {
+    list-style-type: lower-roman;
+}
+
+.content > ol li::marker {
+    color: var(--color-text-accent);
+}
+
 .content > ul li::marker {
     color: var(--color-text-accent);
     content: '◂';
