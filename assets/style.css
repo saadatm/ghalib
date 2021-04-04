@@ -251,6 +251,8 @@ main {
 
 .content > ol ol {
     list-style-type: lower-roman;
+    margin: 0;
+    padding-right: calc(var(--global-line-height) * 1em);
 }
 
 .content > ol li::marker {
