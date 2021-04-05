@@ -418,6 +418,10 @@ h1 .fn-ref a {
     .credits dt {
         text-align: left;
     }
+    
+    .credits dd {
+        margin: 0;
+    }
 }
 /*
  * -----------------------
