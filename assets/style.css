@@ -418,6 +418,10 @@ h1 .fn-ref a {
     .credits dt {
         text-align: left;
     }
+    
+    .credits dd {
+        margin: 0;
+    }
 }
 /*
  * -----------------------
@@ -866,6 +870,10 @@ h1 .fn-ref a {
     margin-top: calc(var(--global-line-height) * 0.75rem);
 }
 
+.toc-index > li:last-child {
+    font-size: 0.85em;
+}
+
 .toc-index h3 {
     margin: 0;
     font-size: inherit;
@@ -941,11 +949,11 @@ h1 .fn-ref a {
     margin: 0;
 }
 
-.toc-full > li:nth-last-child(-n+5) {
+.toc-full > li:nth-last-child(n+2):nth-last-child(-n+6) {
     margin: calc(1em * var(--global-line-height)) 0;
 }
 
-.toc-full > li:nth-last-child(-n+5) > *:first-child {
+.toc-full > li:nth-last-child(n+2):nth-last-child(-n+6) > *:first-child {
     display: block;
     font-size: 1.25em;
     border-top: 2px solid var(--color-text-accent-light);
