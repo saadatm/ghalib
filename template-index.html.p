@@ -91,8 +91,8 @@
     ◊(->html separator-ornament)
     
     <footer>
-        <p>اِس ویب‌کتاب کا تمام متن [لائسنس] کے تحت جاری کیا گیا ہے۔</p>
-        <p>ویب‌کتاب کا سورس <a href="◊|github-url|">گِٹ‌ہب</a> پر <a href="https://opensource.org/licenses/MIT">ایم‌آئی‌ٹی</a> لائسنس کے تحت موجود ہے۔</p>
+        <p>اِس ویب کتاب کا تمام متن [لائسنس] کے تحت جاری کیا گیا ہے۔</p>
+        <p>ویب ‌کتاب کا سورس <a href="◊|github-url|">گِٹ‌ہب</a> پر <a href="https://opensource.org/licenses/MIT">ایم‌آئی‌ٹی</a> لائسنس کے تحت موجود ہے۔</p>
     </footer>
 </body>
 </html>
