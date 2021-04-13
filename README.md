@@ -14,6 +14,6 @@ For more details, please refer to [Pollen's main documentation](https://docs.rac
 
 ## License
 
-Ghalib's poetry is in public domain.
+Ghalib's poetry is in public domain, and the content of this web book is released under the [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/). 
 
-All code under this repo is licensed under the [MIT license](https://opensource.org/licenses/MIT).
+All code in this repo is available under the [MIT license](https://opensource.org/licenses/MIT).
