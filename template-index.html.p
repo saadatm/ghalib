@@ -7,15 +7,16 @@
     <title>کُلیاتِ غالبؔ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="◊|(link-prefix "/assets/style.css")|">
-    <meta name="description" content="مرزا اسد اللّٰہ خان غالبؔ کا متداول اور غیر متداول اردو کلام">
+    <meta name="description" content="مرزا اسد اللّٰہ خان غالبؔ کا اردو کلام، متداول دیوان اور مستند حوالوں سے ماخوذ۔">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="کُلّیاتِ غالبؔ">
-    <meta name="twitter:description" content="مرزا اسد اللّٰہ خان غالبؔ کا متداول اور غیر متداول اردو کلام">
+    <meta name="twitter:description" content="مرزا اسد اللّٰہ خان غالبؔ کا اردو کلام، متداول دیوان اور مستند حوالوں سے ماخوذ۔">
     <meta name="twitter:image" content="◊|base-url|/assets/card-tw.png">
     <!-- Facebook -->
+    <meta property="og:type" content="website">
     <meta property="og:title" content="کُلّیاتِ غالبؔ">
-    <meta property="og:description" content="مرزا اسد اللّٰہ خان غالبؔ کا متداول اور غیر متداول اردو کلام">
+    <meta property="og:description" content="مرزا اسد اللّٰہ خان غالبؔ کا اردو کلام، متداول دیوان اور مستند حوالوں سے ماخوذ۔">
     <meta property="og:image" content="◊|base-url|/assets/card-fb.png">
     <meta property="og:url" content="◊|base-url|/◊|here|">
 </head>

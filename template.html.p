@@ -35,10 +35,11 @@
     <link rel="stylesheet" type="text/css" href="◊|(link-prefix "/assets/style.css")|">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="◊(select 'title metas)">
+    <meta name="twitter:title" content="◊(select 'title metas) - کُلّیاتِ غالبؔ">
     <meta name="twitter:image" content="◊|base-url|/assets/card-tw-square.png">
     <!-- Facebook -->
-    <meta property="og:title" content="◊(select 'title metas)">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="◊(select 'title metas) - کُلّیاتِ غالبؔ">
     <meta property="og:image" content="◊|base-url|/assets/card-fb.png">
     <meta property="og:url" content="◊|base-url|/◊|here|">
 </head>
