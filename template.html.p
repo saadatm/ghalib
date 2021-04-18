@@ -33,6 +33,14 @@
     <title>◊(select 'title metas) - کُلیاتِ غالبؔ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="◊|(link-prefix "/assets/style.css")|">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="◊(select 'title metas)">
+    <meta name="twitter:image" content="◊|base-url|/assets/card-tw-square.png">
+    <!-- Facebook -->
+    <meta property="og:title" content="◊(select 'title metas)">
+    <meta property="og:image" content="◊|base-url|/assets/card-fb.png">
+    <meta property="og:url" content="◊|base-url|/◊|here|">
 </head>
 
 <body>
