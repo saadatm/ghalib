@@ -294,13 +294,13 @@ main {
 }
 
 .fn-ref.start a {
-    top: 50%;
+    top: calc(var(--global-line-height) * 0.5em);
     transform: translate(0, -50%);
     left: calc(100% + 0.45em);
 }
 
 .fn-ref.end a {
-    top: 50%;
+    top: calc(var(--global-line-height) * 0.5em);
     transform: translate(0, -50%);
     right: calc(100% + 0.45em);
 }
@@ -352,25 +352,6 @@ h1 .fn-ref a {
 .poetic-sign {
     font-size: 0.9em;
     margin: 0 0.375em;
-}
-
-.has-qitah-mark .line:first-of-type::before {
-    content: "ق";
-    font-size: 0.8em;
-    line-height: 1;
-    color: var(--color-text-light);
-    position: absolute;
-    left: calc(100% + 0.65em);
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-@media(min-width: 64rem) {
-    .has-qitah-mark .line:first-of-type::before {
-        left: auto;
-        right: calc(100% + (0.5625em * var(--global-line-height)));
-        transform: translate(25%, -50%);
-    }
 }
 
 .overline {
@@ -463,11 +444,17 @@ h1 .fn-ref a {
     margin-bottom: 0;
 }
 
-/*
- * Genre specific styles below
- * .ghazal for ghazals
- * .nazm for qaseedahs, qitahs, sehras, etc.
- */
+.has-qitah-mark .line:first-of-type::before {
+    content: "ق";
+    font-size: 0.8em;
+    line-height: 1;
+    color: var(--color-text-light);
+    position: absolute;
+    left: calc(100% + 0.65em);
+    top: calc(var(--global-line-height) * 0.6em);
+    transform: translateY(-50%);
+}
+
 .ghazal .stanza,
 .musaddas .stanza,
 .mukhammas .stanza {
@@ -534,6 +521,12 @@ h1 .fn-ref a {
 }
 
 @media(min-width: 64rem) {
+    .has-qitah-mark .line:first-of-type::before {
+        left: auto;
+        right: calc(100% + (0.5625em * var(--global-line-height)));
+        transform: translate(25%, -50%);
+    }
+    
     .ghazal,
     .nazm,
     .rubai,
@@ -569,7 +562,46 @@ h1 .fn-ref a {
     }
 }
 
+/* For WebKit based browsers that don't support text-align-last */
+@supports not (text-align-last: justify) {
+    .poetry {
+        margin: 0 auto;
+    }
+    
+    .content > .poetry:first-child,
+    .separator-ornament + .poetry {
+        margin: calc(1rem * var(--global-line-height)) auto 0;
+    }
+    
+    .poetry .line {
+        text-align: justify;
+        margin-top: calc(var(--global-line-height) * -1em);
+    }
+    
+    .poetry .line::after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+    }
 
+    .poetry .stanza:first-child .line:first-of-type {
+        margin-top: 0;
+    }
+    
+    .poetry h6 {
+        margin: 0 0 calc(var(--global-line-height) * 1.25em);
+    }
+    
+    @media(min-width: 64rem) {
+        .poetry .stanza:first-child .line:nth-of-type(2) {
+            margin-top: 0;
+        }
+        
+        .poetry.couplet .stanza .line:nth-of-type(2) {
+            margin-top: calc(var(--global-line-height) * -1em);
+        }
+    }
+}
 
 /*
  * ----------------------------------
