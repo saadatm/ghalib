@@ -147,6 +147,8 @@ Lists. Taken from: https://docs.racket-lang.org/pollen-tfl/_pollen_rkt_.html#%28
 
 (define عددی-فہرست (make-list-function 'ol))
 
+(define کتابیات-فہرست (make-list-function 'ul '((class "bibliography"))))
+
 ; Custom ◊حم tag (حم = abbreviation of حاشیہ منجانب)
 ; To be used to denote the author of a footnote
 (define (حم name)

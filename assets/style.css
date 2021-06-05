@@ -262,6 +262,19 @@ main {
     content: '◂';
 }
 
+.content .bibliography {
+    padding: 0;
+    list-style: none;
+}
+
+.content .bibliography li {
+    margin-bottom: calc(var(--global-line-height) * 1em);
+}
+
+.content .bibliography li::marker {
+    content: none;
+}
+
 .content .center {
     text-align: center;
 }
@@ -401,12 +414,12 @@ h1 .fn-ref a {
         margin: 0;
     }
 }
+
 /*
  * -----------------------
  * Poetry
  * -----------------------
  */
-
 .poetry {
     width: max-content;
     margin: 0 auto calc(1rem * var(--global-line-height));
