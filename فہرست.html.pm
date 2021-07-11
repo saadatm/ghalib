@@ -27,7 +27,6 @@
 ◊(apply ul #:class "toc-full" 
   (map (lambda (x) (make-toc-li x 2))
     '(سخن-ہائے-گفتنی.html
-      دیوان-غالب-سے-کلیات-غالب-تک.html
       دیباچہ.html
       اتحاد-عمل.html
       اس-ویب-کتاب-کے-بارے-میں.html

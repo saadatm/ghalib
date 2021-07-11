@@ -157,6 +157,9 @@ Lists. Taken from: https://docs.racket-lang.org/pollen-tfl/_pollen_rkt_.html#%28
 (define (سرخی . heading)
   `(h1 ,@heading))
 
+(define (ذیلی-سرخی . heading)
+  `(h2 ,@heading))
+
 (define (شاعری-میں-سرخی . content)
   `(h6 ,@content))
 
