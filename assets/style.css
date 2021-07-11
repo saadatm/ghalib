@@ -229,6 +229,11 @@ main {
     text-align: center;
 }
 
+.content h2 {
+    font-size: 1.25rem;
+    margin: calc(var(--global-line-height) * 0.75rem) 0 calc(var(--global-line-height) * 0.25rem) 0;
+}
+
 .content p {
     margin: 0;
 }
@@ -885,7 +890,7 @@ h1 .fn-ref a {
     padding: calc(var(--global-line-height) * 0.5rem) 0;
 }
 
-.toc-index > li:nth-child(-n+5) {
+.toc-index > li:nth-child(-n+4) {
     display: inline-block;
     margin-left: 1em;
     padding: 0;
@@ -895,20 +900,20 @@ h1 .fn-ref a {
     align-items: center;
 }
 
-.toc-index > li:nth-child(-n+5)::after {
+.toc-index > li:nth-child(-n+4)::after {
     content: ".";
     margin-right: 1em;
 }
 
-.toc-index > li:nth-child(5) {
+.toc-index > li:nth-child(4) {
     margin-left: 0;
 }
 
-.toc-index > li:nth-child(5)::after {
+.toc-index > li:nth-child(4)::after {
     content: "";
 }
 
-.toc-index > li:nth-child(6) {
+.toc-index > li:nth-child(5) {
     margin-top: calc(var(--global-line-height) * 0.75rem);
 }
 
