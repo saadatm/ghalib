@@ -92,7 +92,7 @@
                 <dd>جویریہ مسعود</dd>
                 
                 <dt>پیشکش</dt>
-                <dd>اردو محفل</dd>
+                <dd><a href="https://urduweb.org/mehfil/">اردو محفل</a></dd>
             </dl>
         </div>
         ◊(->html doc #:splice? #t)
