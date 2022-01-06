@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Racket
-        uses: Bogdanp/setup-racket@v1.1
+        uses: Bogdanp/setup-racket@v1.7
         with:
             architecture: 'x64'
             distribution: 'full'
@@ -34,7 +34,7 @@ jobs:
           raco pollen publish . $HOME/ghalib-dist
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@4.1.9
         with:
           branch: gh-pages
           folder: ~/ghalib-dist
