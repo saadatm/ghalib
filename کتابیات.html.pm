@@ -14,7 +14,7 @@
 حامد علی خاں — "دیوانِ غالبؔ" — لاہور: پنجاب یونیورسٹی پریس، ◊سال{۱۹۶۹}ء۔ ◊ربط["https://archive.org/details/DeewanEGhalibNuskhaHamidAliKhan"]{انٹرنیٹ آرکائیو} اور ◊ربط["http://www.columbia.edu/itc/mealac/pritchett/00ghalib/texts/txt_hamid_1969.pdf"]{◊انگریزی{A Desertful of Roses}} پر دستیاب۔
 
 
-کالی داس گپتا رضاؔ — "دیوانِ غالبؔ کامل، تاریخی ترتیب سے" (نسخۂ رضاؔ) — ممبئی: ساکار پبلشرز، ◊سال{۱۹۹۵}ء۔  "گلِ رعنا" ، "نسخۂ شیرانی" ، اور "نسخۂ بھوپال بخطِ غالبؔ" بھی اسی سے ماخوذ۔ ◊ربط["http://www.columbia.edu/itc/mealac/pritchett/00ghalib/raza/index.html"]{◊انگریزی{A Desertful of Roses}} پر دستیاب۔
+کالی داس گپتا رضاؔ — "دیوانِ غالبؔ کامل، تاریخی ترتیب سے" (نسخۂ رضاؔ) — ممبئی: ساکار پبلشرز، ◊سال{۱۹۹۵}ء۔  "گلِ رعنا"، "نسخۂ شیرانی"، اور "نسخۂ بھوپال بخطِ غالبؔ" بھی اسی سے ماخوذ۔ ◊ربط["http://www.columbia.edu/itc/mealac/pritchett/00ghalib/raza/index.html"]{◊انگریزی{A Desertful of Roses}} پر دستیاب۔
 
 
 اسد اللّٰہ خان غالبؔ — "دیوانِ غالبؔ (نسخۂ حمیدیہ)" (◊سال{۱۸۲۱}ء میں مرتب کیا گیا) — تدوین از پروفیسر حمید احمد خاں، لاہور: مجلسِ ترقیٔ ادب، ◊سال{۱۹۶۹}ء۔ ◊ربط["http://www.columbia.edu/itc/mealac/pritchett/00ghalib/texts/hamidiyah/index.html"]{◊انگریزی{A Desertful of Roses}} پر دستیاب۔
