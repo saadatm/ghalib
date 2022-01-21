@@ -9,9 +9,6 @@
                 #:double-open "”" #:double-close "“"
                 #:single-open "’" #:single-close "‘"))
 
-(define (for-gh-pages?)
-  (equal? (getenv "POLLEN") "GH_PAGES"))
-
 #|
 We shall be deploying this to GitHub Pages, where the URL is of
 the scheme <username>/github.io/<reponame>/. This messes with
@@ -21,9 +18,12 @@ have written a `link-prefix` function that will check whether:
       link and not linking to external resources), and
  (ii) Pollen has been started with the environment variable POLLEN
       set to the value `GH_PAGES`.
-If both of the bove conditions are met, the function will prefix
+If both of the above conditions are met, the function will prefix
 the link with '/ghalib' (the repo name).
 |#
+(define (for-gh-pages?)
+  (equal? (getenv "POLLEN") "GH_PAGES"))
+
 (define (link-prefix link)
   (if (and (equal? (string-ref link 0) #\/) (for-gh-pages?))
     (string-append "/ghalib" link)
