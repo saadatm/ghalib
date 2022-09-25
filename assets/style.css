@@ -496,7 +496,9 @@ h1 .fn-ref a {
     .musaddas .stanza,
     .mukhammas .stanza {
         margin: 0;
-        display: contents;
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
     }
     
     
@@ -574,6 +576,19 @@ h1 .fn-ref a {
     .musaddas .line:nth-of-type(n+5),
     .mukhammas .line:nth-of-type(n+5) {
         grid-column: 2 / 4;
+    }
+}
+
+/* For browsers that don't support subgrid */
+@supports not (grid-template-columns: subgrid) {
+    @media(min-width: 36rem) {
+        .ghazal .stanza,
+        .nazm .stanza,
+        .rubai .stanza,
+        .musaddas .stanza,
+        .mukhammas .stanza {
+            display: contents;
+        }
     }
 }
 
