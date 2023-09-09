@@ -1,6 +1,12 @@
 # _Kulliyāt-e-Ghalib_ (web book)
 
-This is the source of _Kulliyāt-e-Ghalib_ (web book), a collection of [Ghalib's](https://en.wikipedia.org/wiki/Ghalib) Urdu poetry.
+<img src="assets/kulliyat-e-ghalib-devices.png" alt="A mobile phone, a tablet, and a laptop computer showing the first ghazal from Kulliyāt-e-Ghalib (web book). On the mobile phone, the ghazal appears in a single, justified column. On the tablet, lines of each couplet of the ghazal are set in two consecutive rows, with the first line on the right, the second line on the left, and both justified to an equal width with some horizontal overlap; the lines of the last couplet are center-aligned. On the laptop, each couplet is set in a single row, while its two lines making two equal-width, justified columns; the last couplet is center-aligned and its lines are on consecutive rows." />
+
+<p align="center">⬆️ <i>A showcase of the responsive poetry layout used in</i> Kulliyāt-e-Ghalib</p>
+
+<hr>
+
+This is the source of [_Kulliyāt-e-Ghalib_](https://saadatm.github.io/ghalib/), a web book of [Ghalib's](https://en.wikipedia.org/wiki/Ghalib) Urdu poetry.
 
 ## Local setup
 
